@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf7n4vhg4u4fw"]
+
+[ext_resource type="Texture2D" uid="uid://b7eh8nclay5hg" path="res://assets/sprites/text-box.png" id="1_xrgad"]
+
+[node name="text_box" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(529.375, 430.125)
+scale = Vector2(0.893281, 0.711875)
+texture = ExtResource("1_xrgad")
+
+[node name="Label_name" type="Label" parent="Sprite2D"]
+offset_left = -563.0
+offset_top = -53.0
+offset_right = -283.0
+offset_bottom = 3.0
+theme_override_font_sizes/font_size = 35
+text = "TEST"
+
+[node name="Label_text" type="Label" parent="Sprite2D"]
+offset_left = -547.0
+offset_top = 38.0
+offset_right = 577.0
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 45
+text = "TEST"
