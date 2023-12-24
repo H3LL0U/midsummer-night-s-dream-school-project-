@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://su0ry5yb7daj"
-path="res://.godot/imported/Hermia_sprite.png-74061c210620c18593d0fb050f08fbca.ctex"
+uid="uid://cjb7oy64b0grr"
+path="res://.godot/imported/hermia_sprite.png-e59e643af2f78beb03d87dcbb19cf656.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Hermia_sprite.png"
-dest_files=["res://.godot/imported/Hermia_sprite.png-74061c210620c18593d0fb050f08fbca.ctex"]
+source_file="res://assets/sprites/hermia_sprite.png"
+dest_files=["res://.godot/imported/hermia_sprite.png-e59e643af2f78beb03d87dcbb19cf656.ctex"]
 
 [params]
 

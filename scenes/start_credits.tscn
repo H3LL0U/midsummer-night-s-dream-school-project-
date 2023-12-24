@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg0d03uwtrx1k"]
+
+[ext_resource type="Script" path="res://scripts/start_credits.gd" id="1_1fm7q"]
+[ext_resource type="Texture2D" uid="uid://c2ou8ibib8e1f" path="res://assets/H3LL_0U Studios/Made_by.png" id="2_knymy"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(100, 0)
+script = ExtResource("1_1fm7q")
+
+[node name="start" type="Sprite2D" parent="."]
+position = Vector2(479, 292)
+scale = Vector2(0.562875, 0.536228)
+texture = ExtResource("2_knymy")
+
+[node name="start" type="Sprite2D" parent="start"]
+position = Vector2(2247.39, 13.0541)
+scale = Vector2(1.99648, 1.08212)
+texture = ExtResource("2_knymy")
+
+[node name="start2" type="Sprite2D" parent="start"]
+position = Vector2(-2863.43, -20.5135)
+scale = Vector2(2.9383, 1)
+texture = ExtResource("2_knymy")
