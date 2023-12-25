@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cl55bhivyp3mc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_mjeou"]
-[ext_resource type="AudioStream" uid="uid://bekc3apdety8i" path="res://assets/sounds/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3" id="2_iex45"]
+[ext_resource type="AudioStream" uid="uid://bekc3apdety8i" path="res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3" id="2_iex45"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mjeou")

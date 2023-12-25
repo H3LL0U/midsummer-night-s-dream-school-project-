@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://balshxbds84e3"
+path="res://.godot/imported/thump_sound_effect.mp3-5c3808a97c112db5fe13aa6ffefbca79.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sound effects/thump_sound_effect.mp3"
+dest_files=["res://.godot/imported/thump_sound_effect.mp3-5c3808a97c112db5fe13aa6ffefbca79.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -21,8 +21,12 @@ const backgounds = {
 	
 }
 const sounds = {
-	"text_appear": preload("res://assets/sounds/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3"),
+	"text_appear": preload("res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3"),
 	"calm_song":preload("res://assets/sounds/music/04 Mitsukiyo 04 Lovely Picnic.mp3")
+}
+
+const menu = {
+	"settings":preload("res://scenes/settings.tscn")
 }
 #POSSIBLE INSTRUCTIONS
 var text_to_add = ""
@@ -212,7 +216,7 @@ var scene_instructions = {
 
 
 var click_counter = 1
-
+var settings_opened = false
 
 func _ready():
 	#initial call
@@ -235,6 +239,8 @@ func _process(delta):
 		text_to_add = text_to_add.substr(1)
 		
 		$speechspeaker.play()
+		
+	
 		
 	
 	#cutscene behaviour
@@ -265,7 +271,10 @@ func _process(delta):
 		animation_delay-=delta
 	if cutscene_duration <=0:
 		cutscene_active = false
-		
+	
+	
+	
+
 		
 		
 		
@@ -276,7 +285,7 @@ func _process(delta):
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "":
+			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false:
 				click_counter+=1
 						
 						
@@ -291,13 +300,23 @@ func _input(event: InputEvent):
 					i.call()
 			
 			#finish the text when it's still showing
-			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "":
+			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
 				$text_box/Sprite2D/Label_text.text +=text_to_add
 				text_to_add = ""
+				
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_ESCAPE:
+			if !has_node("settings"):
+				settings_opened =true
+				add_child(menu["settings"].instantiate())
+			else:
+				settings_opened = false
+				$settings.queue_free()
 				
 				
 			
 
 				
-			#if event.button_index == MOUSE_BUTTON_RIGHT:
-				#pass
+
+			
+		

@@ -145,7 +145,6 @@ offset_right = 595.0
 offset_bottom = 267.0
 theme_override_fonts/font = SubResource("FontFile_dl4dq")
 theme_override_font_sizes/font_size = 40
-text = "fdfdfd"
 autowrap_mode = 2
 
 [node name="Label_name" type="Label" parent="Sprite2D"]

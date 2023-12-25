@@ -1,23 +1,75 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg0d03uwtrx1k"]
+[gd_scene load_steps=12 format=3 uid="uid://bg0d03uwtrx1k"]
 
 [ext_resource type="Script" path="res://scripts/start_credits.gd" id="1_1fm7q"]
-[ext_resource type="Texture2D" uid="uid://c2ou8ibib8e1f" path="res://assets/H3LL_0U Studios/Made_by.png" id="2_knymy"]
+[ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="2_hnq1x"]
+[ext_resource type="FontFile" uid="uid://d00q6j0xfwujl" path="res://assets/fonts/ariblk.ttf" id="3_dqkbi"]
+[ext_resource type="Script" path="res://scripts/Label_logo.gd" id="4_or11x"]
+[ext_resource type="Texture2D" uid="uid://bmujw2l7he4qc" path="res://assets/sprites/white_square.jpg" id="4_xy1wi"]
+[ext_resource type="AudioStream" uid="uid://dtqyqyy77vhl2" path="res://assets/sounds/sound effects/keyboard_sound_effect.mp3" id="5_5pocj"]
+[ext_resource type="Script" path="res://scenes/play_sound_trigger.gd" id="7_uln8t"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6y32g"]
+bounce = 0.11
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skpc3"]
+size = Vector2(60, 14)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8apgd"]
+a = Vector2(-4, -3)
+b = Vector2(130, -3)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ur7nw"]
+a = Vector2(-124, 321)
+b = Vector2(-254, 322)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(100, 0)
+position = Vector2(260, 182)
 script = ExtResource("1_1fm7q")
 
-[node name="start" type="Sprite2D" parent="."]
-position = Vector2(479, 292)
-scale = Vector2(0.562875, 0.536228)
-texture = ExtResource("2_knymy")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(302, 113)
+scale = Vector2(2.53, 1.7775)
+texture = ExtResource("2_hnq1x")
 
-[node name="start" type="Sprite2D" parent="start"]
-position = Vector2(2247.39, 13.0541)
-scale = Vector2(1.99648, 1.08212)
-texture = ExtResource("2_knymy")
+[node name="Label_logo" type="Label" parent="."]
+offset_left = 59.0
+offset_top = -44.0
+offset_right = 558.0
+offset_bottom = 243.0
+theme_override_fonts/font = ExtResource("3_dqkbi")
+theme_override_font_sizes/font_size = 100
+horizontal_alignment = 1
+uppercase = true
+script = ExtResource("4_or11x")
 
-[node name="start2" type="Sprite2D" parent="start"]
-position = Vector2(-2863.43, -20.5135)
-scale = Vector2(2.9383, 1)
-texture = ExtResource("2_knymy")
+[node name="sound_effects" type="AudioStreamPlayer" parent="Label_logo"]
+stream = ExtResource("5_5pocj")
+volume_db = -17.333
+
+[node name="_" type="RigidBody2D" parent="." groups=["_"]]
+position = Vector2(378, -3000)
+physics_material_override = SubResource("PhysicsMaterial_6y32g")
+
+[node name="_" type="Sprite2D" parent="_" groups=["_"]]
+scale = Vector2(0.0607501, 0.01375)
+texture = ExtResource("4_xy1wi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="_" groups=["_"]]
+shape = SubResource("RectangleShape2D_skpc3")
+
+[node name="_end_holder" type="StaticBody2D" parent="."]
+position = Vector2(660, -428)
+
+[node name="_end_colider" type="CollisionShape2D" parent="_end_holder"]
+position = Vector2(-345, 498)
+shape = SubResource("SegmentShape2D_8apgd")
+
+[node name="play_sound_trigger" type="Area2D" parent="."]
+position = Vector2(373, 67)
+script = ExtResource("7_uln8t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="play_sound_trigger"]
+position = Vector2(194, -324)
+shape = SubResource("SegmentShape2D_ur7nw")
+
+[connection signal="body_entered" from="play_sound_trigger" to="play_sound_trigger" method="_on_body_entered"]
