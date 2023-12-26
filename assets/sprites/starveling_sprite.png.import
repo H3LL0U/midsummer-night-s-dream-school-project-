@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1jrgfrs0md7x"
-path="res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"
+uid="uid://b4bvjboggf0do"
+path="res://.godot/imported/starveling_sprite.png-52788ce0ce1da8bf3cdc9e160b1cf829.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/forest_background.jpg"
-dest_files=["res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"]
+source_file="res://assets/sprites/starveling_sprite.png"
+dest_files=["res://.godot/imported/starveling_sprite.png-52788ce0ce1da8bf3cdc9e160b1cf829.ctex"]
 
 [params]
 

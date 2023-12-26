@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by5hgdlwaile3"
-path="res://.godot/imported/forest_background_theatre.jpg-deec39530afc1cb7b16b9d78a78f59e9.ctex"
+uid="uid://cprt7sw6k6q2f"
+path="res://.godot/imported/bottom_sprite_donkey.png-b7553fdf8b2d8645a46c303afaadfbbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/forest_background_theatre.jpg"
-dest_files=["res://.godot/imported/forest_background_theatre.jpg-deec39530afc1cb7b16b9d78a78f59e9.ctex"]
+source_file="res://assets/sprites/bottom_sprite_donkey.png"
+dest_files=["res://.godot/imported/bottom_sprite_donkey.png-b7553fdf8b2d8645a46c303afaadfbbb.ctex"]
 
 [params]
 

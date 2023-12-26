@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1jrgfrs0md7x"
-path="res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"
+uid="uid://d1hph28j4wgt2"
+path="res://.godot/imported/quince_sprite.png-d54840a6bb8bd64b8c4d88f1ada51a0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/forest_background.jpg"
-dest_files=["res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"]
+source_file="res://assets/sprites/quince_sprite.png"
+dest_files=["res://.godot/imported/quince_sprite.png-d54840a6bb8bd64b8c4d88f1ada51a0e.ctex"]
 
 [params]
 

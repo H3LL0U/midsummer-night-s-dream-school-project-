@@ -4,27 +4,34 @@ var text_box = preload("res://scenes/text_box.tscn")
 
 const characters={
 	"bottom":preload("res://assets/sprites/bottom_sprite.png"),
-	
+	"bottom_donkey":preload("res://assets/sprites/bottom_sprite_donkey.png"),
 	"helena":preload("res://assets/sprites/Helena_sprite.png"),
 	"hermia":preload("res://assets/sprites/hermia_sprite.png"),
 	"lysander":preload("res://assets/sprites/Lysander_sprite.png"),
 	"oberon":preload("res://assets/sprites/oberon_sprite.png"),
 	"puck":preload("res://assets/sprites/Puck_sprite.png"),
-	"titania":preload("res://assets/sprites/Titania_sprite.png")
+	"titania":preload("res://assets/sprites/Titania_sprite.png"),
+	"starveling":preload("res://assets/sprites/starveling_sprite.png"),
+	"quince":preload("res://assets/sprites/quince_sprite.png"),
+	"snout":preload("res://assets/sprites/snout_sprite.png"),
+	"snug":preload("res://assets/sprites/snug_sprite.png"),
+	"flute":preload("res://assets/sprites/flute_sprite.png")
+	
 }
 const backgounds = {
 	"castle":preload("res://assets/backgrounds/castle_background.jpg"),
 	"forest":preload("res://assets/backgrounds/forest_background.jpg"),
-	"theatre":preload("res://assets/backgrounds/forest_background_theatre.jpg"),
-	"main_menu":preload("res://assets/backgrounds/main_menu_background.webp")
+	"theatre":preload("res://assets/backgrounds/theatre_background.jpg"),
+	"main_menu":preload("res://assets/backgrounds/main_menu_background.webp"),
+	"theatre_aside":preload("res://assets/backgrounds/theatre_background_aside.jpg")
 	
 	
 }
 const sounds = {
 	"text_appear": preload("res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3"),
-	"calm_song":preload("res://assets/sounds/music/04 Mitsukiyo 04 Lovely Picnic.mp3")
+	"lovely_picnic":preload("res://assets/sounds/music/04 Mitsukiyo 04 Lovely Picnic.mp3"),
+	"initial_investigation": preload("res://assets/sounds/music/13. Initial Investigation 2001.mp3")
 }
-
 const menu = {
 	"settings":preload("res://scenes/settings.tscn")
 }
@@ -40,7 +47,7 @@ var text_delay_punctuation = {
 	"?":0.15
 }
 
-func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_ms: float = 35.0):
+func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_ms: float = 34.0):
 	var wrapper =  func():
 		
 		#if newtext!="NONE":
@@ -172,51 +179,191 @@ func END():
 
 
 #instructions used per scene (index indecates the clicks made counting from 1)
-'''var scene_instructions = {
-1: [change_text("Demetrius", "Hallo"), add_characters(["helena"], [900]), add_characters(["lysander"],[500]), change_background("castle") ],
-2: [change_text("Helena", "Hallo"), cutscene('helena',90)],
-3: [change_text("Demetrius", "BYE")],
-4: [change_text("HELENA" , "BYE")],
-5:[change_text("end")]
-}
-'''
-var scene_instructions = {
-	1: [change_text("Bottom", "Hey, fellow thespians! Our time to shine is here. But, heads up, we gotta tweak some things."), add_characters([ "bottom"],[200]), change_background('theatre'), change_song('calm_song'), cutscene("bottom", 900,2,'Linear',2)],
-	2: [change_text("Quince", "Tweaks, Bottom? Spill the tea, please.")],
-	3: [change_text("Bottom", "For the ladies, dear Quince! Can't mess with their vibes, you know? Delicate sensibilities and all that jazz.")],
-	4: [change_text("Snug", "And to avoid confusion, let's be crystal—our lion ain't real, and our sword is just for show.")],
-	5: [change_text("Starveling", "Show, got it! Wise moves, Snug. But seriously, no real lion? Bummer.")],
-	6: [change_text("Bottom", "Also, let's spice it up. How 'bout someone plays a wall, and another brings the moonlight with a bush and lantern? Cool, huh?")],
-	7: [change_text("Puck", "*Mischievously:* Let's sprinkle a bit of chaos from the shadows!")],
-	8: [change_text("Bottom", "*Aside: Ah, friends, I'm stepping aside for a quick brainstorm on our epic play. Maybe even drop a sonnet about this wild night.*"), add_characters(["puck"],[900])],
-	9: [change_text("Puck", "*Mischievously:* Now, time for a little mayhem!")],
-	10: [change_text("Craftsmen", "*Terrified: An ass-headed monster! Run for your lives!*")],
-	11: [change_text("Puck", "*Chasing after: Oh, the joy of chaos! Just another day in the enchanted forest, right?*")],
-	12: [change_text("Titania", "*Awakening: What's this? An ass-headed delight! How charming!*")],
-	13: [change_text("Bottom", "*Unaware: Fear not, fair Titania! Bottom is at your service. And yes, my head's up for grabs!*")],
-	14: [change_text("Titania", "*Fair fairies, attend to him. Peaseblossom, Cobweb, Mote, Mustardseed, be his devoted companions. Don't skimp on the head rubs!*")],
-	15: [change_text("Puck", "To Oberon: My lord, all's a bit wild. The lovers roam the forest, love-confused and all.")],
-	16: [change_text("Oberon", "Great, Puck! The plan unfolds. Now, let's sort this mess.")],
-	17: [change_text("Puck", "On it, my lord. No more love confusion. I'll untangle the lovers with the dawn. It's like fixing a magical Rubik's Cube.")],
-	18: [change_text("Oberon", "And our queen enchanted by an ass! This night's a riot.")],
-	19: [change_text("Puck", "Chuckles: Indeed, my lord. The night's mischief knows no bounds. It's almost as fun as pranking mortals.")],
-	20: [change_text("Oberon", "Well, Puck, let the mortals sleep. We'll watch the sunrise and revel in the magic of a midsummer night's dream.")],
-	21: [change_text("Puck", "*Overseeing the lovers as they wake up. Time to see how our little love potion plays out!*")],
-	22: [change_text("Oberon", "Impressed: Look, Puck. The lovers are waking up, and all confusion has vanished.")],
-	23: [change_text("Puck", "Grinning: A little mischief can lead to clarity, my lord. Who knew?")],
-	24: [change_text("Oberon", "Nods: True, Puck. Sometimes, a touch of magic is all they need. We should start a magical advice column, don't you think?")],
-	25: [change_text("Puck", "Gazes at the sunrise: A beautiful end to a magical night. And now, we wait for the reviews from our enchanted audience.")],
-	26: [change_text("Oberon", "Agrees: Indeed, Puck. Let's leave them to their day. The magic of the night has done its work. Until the next night, my mischievous companion.")],
-	27: [change_text("Puck", "Vanishing into the shadows: Until then, my lord. Remember, the night is young, and so are we.")],
-	28: [change_text("Oberon", "Fading away: Until then, Puck. The magic will continue.")],
-	29: [END()]
-}
+
+
+var scene_instructions = [
+[
+	change_text('Quince', "Alright, everyone here? Let's rehearse in this convenient spot. Our stage is this green plot, the dressing room is this hawthorn brake. We'll act it out as planned before the Duke."),
+	change_background('theatre'),
+	add_characters(["bottom","quince","snug","snout", "flute","starveling"], [200, 350, 500, 650, 800, 950]),
+	change_song("initial_investigation")
+],
+ [
+	change_text('Bottom', "Peter Quince?")
+],
+ [
+	change_text('Quince', "What's up, Bottom?")
+],
+ [
+	change_text('Bottom', "There are problems in the Pyramus and Thisbe play. Pyramus has to kill himself with a sword, and the ladies won't like that. What do you think?")
+],
+ [
+	change_text('Snout', "It's a dangerous idea.")
+],
+ [
+	change_text('Starveling', "We should skip the killing.")
+],
+ [
+	change_text('Bottom', "No, I have a plan. Write a prologue assuring them there's no harm, Pyramus isn't really dead, and that I'm not even Pyramus, but Bottom the weaver.")
+],
+ [
+	change_text('Quince', "Okay, we'll do that in eight and six lines.")
+],
+ [
+	change_text('Bottom', "Make it eight and and only eight!")
+],
+ [
+	change_text('Snout', "But won't the ladies be scared of the lion?")
+],
+ [
+	change_text('Starveling', "I'm afraid so."),
+],
+[
+	change_text('Bottom', "We can handle that. Another prologue saying the lion isn't real.")
+],
+[
+	change_text('Snout', "That could work."),
+],
+[
+	change_text('Bottom', "Also, he should speak through the lion's neck, introducing himself as Snug the joiner."),
+],
+[
+	change_text('Quince', "Fine, we'll go with that. But there are other challenges, like bringing moonlight in and creating a wall.")
+],
+[
+	change_text('Snug', "Does the moon shine the night of our play?")
+],
+[
+	change_text('Bottom', "Check the almanac.")
+],
+[
+	change_text('Quince', "Yes, it does.")
+],
+[
+	change_text('Bottom', "Then leave a window open for the moon or have someone come in with a lantern and thorns to represent Moonshine.")
+],
+[
+	change_text('Quince', "And a wall?")
+],
+[
+	change_text('Snout', "Impossible!")
+],
+[
+	change_text('Bottom', "Someone can play Wall with plaster or loam, and Pyramus and Thisbe can talk through a cranny.")
+],
+[
+	change_text('Quince', "That works, let's sit down and rehearse.")
+],
+[
+	
+	change_text('Puck', "What do we have here? I'll be an audience or even an actor if needed.")
+],
+[
+	change_text('Quince', "Pyramus, start your lines.")
+],
+[
+	change_text('Bottom (as Pyramus)', "Thisbe, the flowers of odorous savors sweet.")
+],
+[
+	change_text('Quince', "Odors, not odorous!")
+],
+[
+	change_text('Bottom (as Pyramus)', "Odors savors sweet. So hath thy breath, my dearest Thisbe dear.")
+],
+[
+	change_text('Puck (aside)', "This Pyramus is different."),
+],
+[
+	change_text('Puck', "[Follows Bottom offstage]")
+],
+[
+	change_text('Flute', "Is it my turn?")
+],
+[
+	change_text('Quince', "Yes, go for it. You're just going to see what the noise was and come back.")
+],
+[
+	change_text('Flute (as Thisbe)', "Most radiant Pyramus, most lily-white of hue...")
+],
+[
+	change_text('Robin and Bottom', "[Return with Bottom's head transformed into that of an ass]"),
+],
+[
+	change_text('Bottom (as Pyramus)', "If I were fair, Thisbe, I were only thine.")
+],
+[
+	change_text('Quince', "Monstrous! We're haunted! Run!"),
+],
+[
+	change_text('All actors', "[Exit, leaving Robin alone on stage]")
+],
+[
+	change_text('Robin', "I'll follow them, lead them in circles. Now I can be a horse, hound, hog, bear, or fire."),
+],
+[
+	change_text('Robin', "[Exits. Bottom returns with his ass's head]"),
+],
+[
+	change_text('Bottom', "Why did they run? This is a trick to scare me."),
+],
+[
+	change_text('Snout', "[Enters]"),
+],
+[
+	change_text('Snout', "Bottom, you've changed! What's on your head?"),
+],
+[
+	change_text('Bottom', "An ass-head, just like yours."),
+],
+[
+	change_text('Snout', "[Exits. Quince enters]"),
+],
+[
+	change_text('Quince', "Bless you, Bottom. You've transformed."),
+],
+[
+	change_text('Quince', "[Exits. Bottom realizes the prank]"),
+],
+[
+	change_text('Bottom', "They're making a fool of me, but I won't leave. I'll sing to show I'm not scared."),
+],
+[
+	change_text('Bottom', "[Sings a song]"),
+],
+[
+	change_text('Titania', "[Wakes up, sees Bottom with the ass's head]"),
+],
+[
+	change_text('Titania', "Who woke me? What angel is this?"),
+],
+[
+	change_text('Bottom (singing)', "The finch, the sparrow, and the lark..."),
+],
+[
+	change_text('Titania', "Sing again. Your voice and appearance enchant me."),
+],
+[
+	change_text('Bottom', "You should have little reason for that. But, to be honest, reason and love don't go together nowadays."),
+],
+[
+	change_text('Titania', "You're as wise as you are beautiful."),
+],
+[
+	change_text('Bottom', "Not really, but if I had the wit to leave this forest, I'd be fine."),
+],
+[
+	change_text('Titania', "Don't leave. Stay with me. I'm a fairy, and I love you.")
+],
+[
+END()
+]
+]
 
 
 
 
 var click_counter = 1
-var settings_opened = false
+@export var settings_opened = false
 
 func _ready():
 	#initial call
@@ -224,9 +371,16 @@ func _ready():
 	
 	add_child(text_box.instantiate())
 	
-	for i in scene_instructions[click_counter]:
+	for i in scene_instructions[click_counter-1]:
 		i.call()
-
+	for i in characters:
+		if has_node(i) and get_node(i).name in $text_box/Sprite2D/Label_name.text.to_lower():
+			get_node(i).z_index = 1
+			get_node(i).modulate = Color(1,1,1,1)
+		elif has_node(i):
+			get_node(i).z_index = 0
+			
+			get_node(i).modulate = Color(0.56,0.56,0.56,1)
 
 func _process(delta):
 	#let letters manualy appear
@@ -296,13 +450,28 @@ func _input(event: InputEvent):
 					#get_tree().quit()
 					
 				
-				for i in scene_instructions[click_counter]:
+				for i in scene_instructions[click_counter-1]:
+					
 					i.call()
+				#dimm the characters that don't speak
+				for i in characters:
+					if has_node(i) and get_node(i).name in $text_box/Sprite2D/Label_name.text.to_lower():
+						
+						get_node(i).modulate = Color(1,1,1,1)
+						get_node(i).z_index = 1
+					elif has_node(i):
+						get_node(i).z_index = 0
+						get_node(i).modulate = Color(0.56,0.56,0.56,1)
+						
+						
+						
+					
 			
 			#finish the text when it's still showing
 			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
 				$text_box/Sprite2D/Label_text.text +=text_to_add
 				text_to_add = ""
+			
 				
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:

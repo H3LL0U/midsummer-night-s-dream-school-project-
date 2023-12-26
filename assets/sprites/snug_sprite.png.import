@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1jrgfrs0md7x"
-path="res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"
+uid="uid://bs38jgu8wming"
+path="res://.godot/imported/snug_sprite.png-244d5655004dae82daaf30b8312c0f6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/forest_background.jpg"
-dest_files=["res://.godot/imported/forest_background.jpg-eaf6152ba521d76602e8e220c3a30089.ctex"]
+source_file="res://assets/sprites/snug_sprite.png"
+dest_files=["res://.godot/imported/snug_sprite.png-244d5655004dae82daaf30b8312c0f6e.ctex"]
 
 [params]
 

@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://v4vlaakc6cu"]
+[gd_scene load_steps=5 format=3 uid="uid://v4vlaakc6cu"]
 
+[ext_resource type="Script" path="res://scripts/settings.gd" id="1_5kyid"]
 [ext_resource type="Script" path="res://scripts/Music sound.gd" id="1_7vxxj"]
 [ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="2_ytpmo"]
+[ext_resource type="FontFile" uid="uid://d00q6j0xfwujl" path="res://assets/fonts/ariblk.ttf" id="4_remkw"]
 
 [node name="settings" type="Node2D"]
+z_index = 100
+script = ExtResource("1_5kyid")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(597.5, 294.5)
+scale = Vector2(1.25875, 0.77125)
+texture = ExtResource("2_ytpmo")
 
 [node name="Music sound" type="HSlider" parent="."]
 offset_left = 343.0
@@ -26,7 +35,7 @@ script = ExtResource("1_7vxxj")
 offset_left = 368.0
 offset_top = 161.0
 offset_right = 800.0
-offset_bottom = 202.0
+offset_bottom = 210.0
 theme_override_font_sizes/font_size = 35
 text = "MUSIC"
 horizontal_alignment = 1
@@ -40,8 +49,28 @@ theme_override_font_sizes/font_size = 35
 text = "General sounds"
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(597.5, 294.5)
-scale = Vector2(1.25875, 0.77125)
-texture = ExtResource("2_ytpmo")
+[node name="quit_button" type="Button" parent="."]
+modulate = Color(1, 0, 0, 1)
+self_modulate = Color(1, 0, 0, 1)
+offset_left = 380.0
+offset_top = 403.0
+offset_right = 507.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("4_remkw")
+theme_override_font_sizes/font_size = 25
+text = "quit"
+
+[node name="resume" type="Button" parent="."]
+modulate = Color(0, 1, 0, 1)
+self_modulate = Color(0, 1, 0, 1)
+offset_left = 674.0
+offset_top = 406.0
+offset_right = 793.0
+offset_bottom = 455.0
+theme_override_fonts/font = ExtResource("4_remkw")
+theme_override_font_sizes/font_size = 25
+text = "resume
+"
+
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="resume" to="." method="_on_resume_pressed"]

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scripts/Label_logo.gd" id="4_or11x"]
 [ext_resource type="Texture2D" uid="uid://bmujw2l7he4qc" path="res://assets/sprites/white_square.jpg" id="4_xy1wi"]
 [ext_resource type="AudioStream" uid="uid://dtqyqyy77vhl2" path="res://assets/sounds/sound effects/keyboard_sound_effect.mp3" id="5_5pocj"]
-[ext_resource type="Script" path="res://scenes/play_sound_trigger.gd" id="7_uln8t"]
+[ext_resource type="Script" path="res://scripts/play_sound_trigger.gd" id="7_uln8t"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6y32g"]
 bounce = 0.11

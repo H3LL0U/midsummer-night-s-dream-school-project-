@@ -132,6 +132,7 @@ cache/0/30/0/kerning_overrides/45/0 = Vector2(0, 0)
 cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
 
 [node name="text_box" type="Node2D"]
+z_index = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(529, 461)
