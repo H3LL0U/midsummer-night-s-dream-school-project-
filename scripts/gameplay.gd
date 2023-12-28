@@ -4,7 +4,7 @@ var text_box = preload("res://scenes/text_box.tscn")
 
 const characters={
 	"bottom":preload("res://assets/sprites/bottom_sprite.png"),
-	"bottom_donkey":preload("res://assets/sprites/bottom_sprite_donkey.png"),
+	"bottom donkey":preload("res://assets/sprites/bottom_sprite_donkey.png"),
 	"helena":preload("res://assets/sprites/Helena_sprite.png"),
 	"hermia":preload("res://assets/sprites/hermia_sprite.png"),
 	"lysander":preload("res://assets/sprites/Lysander_sprite.png"),
@@ -52,12 +52,12 @@ func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_m
 		
 		#if newtext!="NONE":
 			#$text_box/Sprite2D/Label_text.text= newtext
-		$text_box/Sprite2D/Label_text.text =""
+		$text_box/Label_text.text =""
 		text_to_add = newtext
 		default_current_text_speed = text_speed_ms/1000
 		current_text_speed = text_speed_ms/1000
 		if speaker!="NONE":
-			$text_box/Sprite2D/Label_name.text =speaker
+			$text_box/Label_name.text =speaker
 	return wrapper
 #x value 0 to -1152
 func add_characters (characters_to_add: Array = [], x_coordinates :Array = []):
@@ -98,11 +98,15 @@ func add_characters (characters_to_add: Array = [], x_coordinates :Array = []):
 	return wrapper
 	
 	
-func remove_character(name: String):
+func remove_characters(_names: Array):
 	var wrapper = func():
-		var character_to_remove = get_node(name)
-		if character_to_remove:
-			character_to_remove.queue_free()
+		
+		var character_to_remove
+		for name in _names:
+			character_to_remove = get_node(name)
+		
+			if character_to_remove:
+				character_to_remove.queue_free()
 		
 	return wrapper
 	
@@ -129,21 +133,40 @@ func change_background(new_background: String):
 
 		
 #this function changes the variables and the result gets calculated in _process
-var new_pos
+var character_name_to_animate ={}
+#var new_pos
 var cutscene_active = false
-var cutscene_type = "Linear"
-var character_name_to_animate
-var cutscene_duration = 3.0
-var animation_delay = 0
-var character_speed
-func cutscene(name: String, new_position: float,time : float = 2, animation_type: String ="Linear", delay: float=0.0):
-	name = name.to_lower()
-	var wrapper = func ():
-		character_name_to_animate = get_node(name)
+
+func cutscene(_names: Array, new_positions: Array,time : Array = [2], animation_type: Array =["Linear"], delay: Array=[0.0]):
+	
+	for i in range(_names.size()-time.size()):
+		time.append(2)
+	for i in range(_names.size()-animation_type.size()):
+		animation_type.append("Linear")
+	for i in range(_names.size()-delay.size()):
+		delay.append(0)
+	
 		
-		if !character_name_to_animate:
+	var wrapper = func ():
+
+		
+		if !_names:
 			cutscene_active =false
 		else:
+			for i in range(len(_names)):
+				if has_node(_names[i]):
+					character_name_to_animate[get_node(_names[i])] = {
+						"new_position":new_positions[i],
+						"time":time[i],
+						"animation_type":animation_type[i],
+						"delay":delay[i],
+						"character_speed": (new_positions[i]-get_node(_names[i]).position.x)/time[i],
+						"animation_active": true
+						}
+			cutscene_active = true
+			
+		'''
+			character_name_to_animate
 			new_pos = new_position
 			
 			character_speed = (new_position-character_name_to_animate.position.x)/time
@@ -152,6 +175,7 @@ func cutscene(name: String, new_position: float,time : float = 2, animation_type
 
 			cutscene_duration = time
 			animation_delay = delay
+		'''
 	return wrapper
 
 func change_song(song_name:String):
@@ -183,9 +207,12 @@ func END():
 
 var scene_instructions = [
 [
+	
 	change_text('Quince', "Alright, everyone here? Let's rehearse in this convenient spot. Our stage is this green plot, the dressing room is this hawthorn brake. We'll act it out as planned before the Duke."),
 	change_background('theatre'),
 	add_characters(["bottom","quince","snug","snout", "flute","starveling"], [200, 350, 500, 650, 800, 950]),
+	#cutscene(['bottom'],[300]),
+	cutscene(["bottom","quince"],[550,550]),
 	change_song("initial_investigation")
 ],
  [
@@ -198,7 +225,7 @@ var scene_instructions = [
 	change_text('Bottom', "There are problems in the Pyramus and Thisbe play. Pyramus has to kill himself with a sword, and the ladies won't like that. What do you think?")
 ],
  [
-	change_text('Snout', "It's a dangerous idea.")
+	change_text('Snout', "It's a dangerous idea! Oberon might kill us because of it!")
 ],
  [
 	change_text('Starveling', "We should skip the killing.")
@@ -210,7 +237,7 @@ var scene_instructions = [
 	change_text('Quince', "Okay, we'll do that in eight and six lines.")
 ],
  [
-	change_text('Bottom', "Make it eight and and only eight!")
+	change_text('Bottom', "Make it eight!")
 ],
  [
 	change_text('Snout', "But won't the ladies be scared of the lion?")
@@ -222,7 +249,7 @@ var scene_instructions = [
 	change_text('Bottom', "We can handle that. Another prologue saying the lion isn't real.")
 ],
 [
-	change_text('Snout', "That could work."),
+	change_text('Snug', "That could work."),
 ],
 [
 	change_text('Bottom', "Also, he should speak through the lion's neck, introducing himself as Snug the joiner."),
@@ -234,7 +261,7 @@ var scene_instructions = [
 	change_text('Snug', "Does the moon shine the night of our play?")
 ],
 [
-	change_text('Bottom', "Check the almanac.")
+	change_text('Bottom', "Check the calendar.")
 ],
 [
 	change_text('Quince', "Yes, it does.")
@@ -243,40 +270,39 @@ var scene_instructions = [
 	change_text('Bottom', "Then leave a window open for the moon or have someone come in with a lantern and thorns to represent Moonshine.")
 ],
 [
-	change_text('Quince', "And a wall?")
+	change_text('Quince', "And what a bout the wall?")
 ],
 [
-	change_text('Snout', "Impossible!")
-],
-[
-	change_text('Bottom', "Someone can play Wall with plaster or loam, and Pyramus and Thisbe can talk through a cranny.")
+	change_text('Bottom', "Snout can play a wall with plaster or loam, and Pyramus and Thisbe can talk through a cranny.")
 ],
 [
 	change_text('Quince', "That works, let's sit down and rehearse.")
 ],
+
 [
+	change_text('Everyone', "Allright!")
+],
+[
+	change_text("Quince", "You can start, Pyramus"),
+	remove_characters(["snug","snout","starveling","flute"]),
+	#cutscene("quince",900)
+],
+[
+	change_text('Bottom', "Thisbe, the flowers of odorous savors sweet."),
 	
-	change_text('Puck', "What do we have here? I'll be an audience or even an actor if needed.")
-],
-[
-	change_text('Quince', "Pyramus, start your lines.")
-],
-[
-	change_text('Bottom (as Pyramus)', "Thisbe, the flowers of odorous savors sweet.")
 ],
 [
 	change_text('Quince', "Odors, not odorous!")
 ],
 [
-	change_text('Bottom (as Pyramus)', "Odors savors sweet. So hath thy breath, my dearest Thisbe dear.")
+	change_text('Bottom', "Odors savors sweet. So hath thy breath, my dearest Thisbe dear."),
+	#cutscene("bottom",-200,1,"Linear",2)
 ],
+
 [
-	change_text('Puck (aside)', "This Pyramus is different."),
-],
-[
-	change_text('Puck', "[Follows Bottom offstage]")
-],
-[
+	remove_characters(["bottom"]),
+	add_characters(["bottom donkey","flute"],[-200,1500]),
+	#cutscene("flute",1000),
 	change_text('Flute', "Is it my turn?")
 ],
 [
@@ -285,23 +311,22 @@ var scene_instructions = [
 [
 	change_text('Flute (as Thisbe)', "Most radiant Pyramus, most lily-white of hue...")
 ],
+
 [
-	change_text('Robin and Bottom', "[Return with Bottom's head transformed into that of an ass]"),
-],
-[
+	#cutscene("bottom donkey",200),
 	change_text('Bottom (as Pyramus)', "If I were fair, Thisbe, I were only thine.")
 ],
 [
 	change_text('Quince', "Monstrous! We're haunted! Run!"),
 ],
 [
-	change_text('All actors', "[Exit, leaving Robin alone on stage]")
+	change_text('All actors', "[Exit, leaving Puck alone on stage]")
 ],
 [
 	change_text('Robin', "I'll follow them, lead them in circles. Now I can be a horse, hound, hog, bear, or fire."),
 ],
 [
-	change_text('Robin', "[Exits. Bottom returns with his ass's head]"),
+	change_text('Puck', "[Exits. Bottom returns with his ass's head]"),
 ],
 [
 	change_text('Bottom', "Why did they run? This is a trick to scare me."),
@@ -374,7 +399,7 @@ func _ready():
 	for i in scene_instructions[click_counter-1]:
 		i.call()
 	for i in characters:
-		if has_node(i) and get_node(i).name in $text_box/Sprite2D/Label_name.text.to_lower():
+		if has_node(i) and get_node(i).name in $text_box/Label_name.text.to_lower():
 			get_node(i).z_index = 1
 			get_node(i).modulate = Color(1,1,1,1)
 		elif has_node(i):
@@ -389,7 +414,7 @@ func _process(delta):
 		current_text_speed = default_current_text_speed
 		if text_to_add[0] in text_delay_punctuation:
 			current_text_speed+=text_delay_punctuation[text_to_add[0]]
-		$text_box/Sprite2D/Label_text.text+=text_to_add[0]
+		$text_box/Label_text.text+=text_to_add[0]
 		text_to_add = text_to_add.substr(1)
 		
 		$speechspeaker.play()
@@ -397,20 +422,43 @@ func _process(delta):
 	
 		
 	
-	#cutscene behaviour
-	
-	if cutscene_active and animation_delay<=0:
+	#change the dictionarries with characters new position and states for the animation 
+	for chr in character_name_to_animate:
 		
-		
-		
-		cutscene_duration-=delta
-		match (cutscene_type):
+		if cutscene_active and character_name_to_animate[chr]["delay"]<=0:
 			
-			"Linear":
-				character_name_to_animate.position.x+=character_speed*delta
-			"Quadratic":
-				pass
-	#sound behaviour
+			
+			
+			character_name_to_animate[chr]["time"]-=delta
+			match (character_name_to_animate[chr]["animation_type"]):
+				
+				"Linear":
+					
+					chr.position.x+=character_name_to_animate[chr]["character_speed"]*delta
+				"Quadratic":
+					pass
+					
+		
+		if character_name_to_animate[chr]["delay"]>0:
+			character_name_to_animate[chr]["delay"]-=delta
+		if character_name_to_animate[chr]["time"] <=0:
+			character_name_to_animate[chr]["animation_active"] = false	
+	#check if all the animations have finished
+	for chr in character_name_to_animate:
+		if character_name_to_animate[chr]["animation_active"]:
+			cutscene_active = true
+			break
+			
+		else:
+			cutscene_active = false
+			
+	if cutscene_active == false:
+		character_name_to_animate = {}
+	
+	
+		
+					
+		#sound behaviour
 	if sound_delay<0 and play_sound_effect:
 		$speechspeaker/soundspaeker.play()
 		play_sound_effect = false
@@ -420,11 +468,9 @@ func _process(delta):
 		
 		
 				
-	#animation behaviour
-	if animation_delay>0:
-		animation_delay-=delta
-	if cutscene_duration <=0:
-		cutscene_active = false
+	
+	
+
 	
 	
 	
@@ -439,7 +485,7 @@ func _process(delta):
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false:
+			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false and cutscene_active==false:
 				click_counter+=1
 						
 						
@@ -455,7 +501,7 @@ func _input(event: InputEvent):
 					i.call()
 				#dimm the characters that don't speak
 				for i in characters:
-					if has_node(i) and get_node(i).name in $text_box/Sprite2D/Label_name.text.to_lower():
+					if has_node(i) and get_node(i).name in $text_box/Label_name.text.to_lower():
 						
 						get_node(i).modulate = Color(1,1,1,1)
 						get_node(i).z_index = 1
@@ -469,7 +515,7 @@ func _input(event: InputEvent):
 			
 			#finish the text when it's still showing
 			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
-				$text_box/Sprite2D/Label_text.text +=text_to_add
+				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""
 			
 				

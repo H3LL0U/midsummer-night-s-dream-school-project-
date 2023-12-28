@@ -1,7 +1,7 @@
 extends HSlider
 
 var sound_node
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	
 	if self.name == "Music sound":
@@ -12,8 +12,9 @@ func _ready():
 		self.value = sound_node.volume_db+80
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
+	
 	if sound_node:
 		sound_node.volume_db = self.value-80
 		if self.value == 0:

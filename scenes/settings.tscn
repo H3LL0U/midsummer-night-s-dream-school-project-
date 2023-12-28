@@ -46,7 +46,7 @@ offset_top = 308.0
 offset_right = 810.0
 offset_bottom = 357.0
 theme_override_font_sizes/font_size = 35
-text = "General sounds"
+text = "SFX"
 horizontal_alignment = 1
 
 [node name="quit_button" type="Button" parent="."]
