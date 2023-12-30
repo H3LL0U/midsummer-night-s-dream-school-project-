@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://l63b73e3f7tf"
+path="res://.godot/imported/07 Mitsukiyo 05 Unwelcome School.mp3-63ea425f71e620d1f4a7987812a50541.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/music/07 Mitsukiyo 05 Unwelcome School.mp3"
+dest_files=["res://.godot/imported/07 Mitsukiyo 05 Unwelcome School.mp3-63ea425f71e620d1f4a7987812a50541.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

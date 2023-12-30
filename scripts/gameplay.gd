@@ -30,7 +30,8 @@ const backgounds = {
 const sounds = {
 	"text_appear": preload("res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3"),
 	"lovely_picnic":preload("res://assets/sounds/music/04 Mitsukiyo 04 Lovely Picnic.mp3"),
-	"initial_investigation": preload("res://assets/sounds/music/13. Initial Investigation 2001.mp3")
+	"initial_investigation": preload("res://assets/sounds/music/13. Initial Investigation 2001.mp3"),
+	"unwelcome_school":preload("res://assets/sounds/music/07 Mitsukiyo 05 Unwelcome School.mp3")
 }
 const menu = {
 	"settings":preload("res://scenes/settings.tscn")
@@ -47,7 +48,7 @@ var text_delay_punctuation = {
 	"?":0.15
 }
 
-func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_ms: float = 34.0):
+func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_ms: float = 34.0, initial_delay: float = 0):
 	var wrapper =  func():
 		
 		#if newtext!="NONE":
@@ -55,7 +56,7 @@ func change_text (speaker :String = "NONE" ,newtext: String="NONE", text_speed_m
 		$text_box/Label_text.text =""
 		text_to_add = newtext
 		default_current_text_speed = text_speed_ms/1000
-		current_text_speed = text_speed_ms/1000
+		current_text_speed = initial_delay
 		if speaker!="NONE":
 			$text_box/Label_name.text =speaker
 	return wrapper
@@ -137,7 +138,7 @@ var character_name_to_animate ={}
 #var new_pos
 var cutscene_active = false
 
-func cutscene(_names: Array, new_positions: Array,time : Array = [2], animation_type: Array =["Linear"], delay: Array=[0.0]):
+func cutscene(_names: Array, new_positions: Array,time : Array = [1], animation_type: Array =["Linear"], delay: Array=[0.0]):
 	
 	for i in range(_names.size()-time.size()):
 		time.append(2)
@@ -165,17 +166,6 @@ func cutscene(_names: Array, new_positions: Array,time : Array = [2], animation_
 						}
 			cutscene_active = true
 			
-		'''
-			character_name_to_animate
-			new_pos = new_position
-			
-			character_speed = (new_position-character_name_to_animate.position.x)/time
-			cutscene_active = true
-			cutscene_type = animation_type
-
-			cutscene_duration = time
-			animation_delay = delay
-		'''
 	return wrapper
 
 func change_song(song_name:String):
@@ -211,8 +201,8 @@ var scene_instructions = [
 	change_text('Quince', "Alright, everyone here? Let's rehearse in this convenient spot. Our stage is this green plot, the dressing room is this hawthorn brake. We'll act it out as planned before the Duke."),
 	change_background('theatre'),
 	add_characters(["bottom","quince","snug","snout", "flute","starveling"], [200, 350, 500, 650, 800, 950]),
-	#cutscene(['bottom'],[300]),
-	cutscene(["bottom","quince"],[550,550]),
+	
+	
 	change_song("initial_investigation")
 ],
  [
@@ -284,8 +274,8 @@ var scene_instructions = [
 ],
 [
 	change_text("Quince", "You can start, Pyramus"),
-	remove_characters(["snug","snout","starveling","flute"]),
-	#cutscene("quince",900)
+	cutscene(["snug","snout","starveling","flute"],[-300,1500,1500,1500],[1,1,1,1]),
+	cutscene(["quince"],[500])
 ],
 [
 	change_text('Bottom', "Thisbe, the flowers of odorous savors sweet."),
@@ -296,73 +286,70 @@ var scene_instructions = [
 ],
 [
 	change_text('Bottom', "Odors savors sweet. So hath thy breath, my dearest Thisbe dear."),
-	#cutscene("bottom",-200,1,"Linear",2)
+	cutscene(["bottom"],[-200],[1],["Linear"],[2])
 ],
 
 [
 	remove_characters(["bottom"]),
 	add_characters(["bottom donkey","flute"],[-200,1500]),
-	#cutscene("flute",1000),
+	cutscene(["flute"],[1200],[1]),
 	change_text('Flute', "Is it my turn?")
 ],
 [
 	change_text('Quince', "Yes, go for it. You're just going to see what the noise was and come back.")
 ],
 [
+	cutscene(["flute"],[900],[1.5]),
 	change_text('Flute (as Thisbe)', "Most radiant Pyramus, most lily-white of hue...")
 ],
 
 [
-	#cutscene("bottom donkey",200),
-	change_text('Bottom (as Pyramus)', "If I were fair, Thisbe, I were only thine.")
+	change_song("unwelcome_school"),
+	cutscene(["bottom donkey"],[200]),
+	change_text('Bottom', "If I were fair, Thisbe, I were only thine.")
 ],
 [
 	change_text('Quince', "Monstrous! We're haunted! Run!"),
 ],
 [
-	change_text('All actors', "[Exit, leaving Puck alone on stage]")
+	cutscene(["quince","flute"],[1500,1500],[1,1]),
+	change_text('Quince and Flute', "AAAAAAAAAA!")
 ],
-[
-	change_text('Robin', "I'll follow them, lead them in circles. Now I can be a horse, hound, hog, bear, or fire."),
-],
-[
-	change_text('Puck', "[Exits. Bottom returns with his ass's head]"),
-],
+
 [
 	change_text('Bottom', "Why did they run? This is a trick to scare me."),
 ],
+
 [
-	change_text('Snout', "[Enters]"),
+	cutscene(["snout"],[900],[1]),
+	change_text('Snout', "Bottom, you've changed! What's on your head?",34,1.2),
 ],
 [
-	change_text('Snout', "Bottom, you've changed! What's on your head?"),
+	change_text('Bottom', "A donkey-head, just like yours."),
+],
+
+[
+	cutscene(["snout","quince"],[1500,900],[1]),
+	change_text('Quince', "Bless you, Bottom. You've transformed.",34,1.2),
+],
+
+[
+	cutscene(["quince","bottom donkey"],[1500,600]),
+	change_text('Bottom', "They're making a fool of me, but I won't leave. I'll sing to show I'm not scared.",34,1.2),
 ],
 [
-	change_text('Bottom', "An ass-head, just like yours."),
+	change_song("lovely_picnic"),
+	change_text('Bottom', "*Sings*"),
 ],
 [
-	change_text('Snout', "[Exits. Quince enters]"),
+	add_characters(["titania"],[-400]),
+	cutscene(['titania'],[200]),
+	cutscene(["bottom donkey"],[900]),
+	
+	change_text('Titania', "Who woke me? What angel is this?")
 ],
 [
-	change_text('Quince', "Bless you, Bottom. You've transformed."),
-],
-[
-	change_text('Quince', "[Exits. Bottom realizes the prank]"),
-],
-[
-	change_text('Bottom', "They're making a fool of me, but I won't leave. I'll sing to show I'm not scared."),
-],
-[
-	change_text('Bottom', "[Sings a song]"),
-],
-[
-	change_text('Titania', "[Wakes up, sees Bottom with the ass's head]"),
-],
-[
-	change_text('Titania', "Who woke me? What angel is this?"),
-],
-[
-	change_text('Bottom (singing)', "The finch, the sparrow, and the lark..."),
+	change_text('Bottom', "The finch, the sparrow, and the lark...~"),
 ],
 [
 	change_text('Titania', "Sing again. Your voice and appearance enchant me."),
@@ -377,7 +364,22 @@ var scene_instructions = [
 	change_text('Bottom', "Not really, but if I had the wit to leave this forest, I'd be fine."),
 ],
 [
-	change_text('Titania', "Don't leave. Stay with me. I'm a fairy, and I love you.")
+	change_text('Titania', "Don't leave. Stay with me. I'm a fairy, and I am in love with you.")
+],
+[
+	change_text('Bottom', "Mistress, upon my life, I shall serve you truly."),
+],
+[
+	change_text('Titania','Follow me to my forest bower we shall celebrate with other Fairies')
+],
+[
+	change_text("Bottom",'Of course my mistress!')
+],
+[
+	cutscene(['titania', "bottom donkey"],[1500,1500])
+],
+[
+	change_text('',"The end of the Act 3 Scene 1",37)
 ],
 [
 END()
@@ -422,7 +424,7 @@ func _process(delta):
 	
 		
 	
-	#change the dictionarries with characters new position and states for the animation 
+	#change the dictionaries with characters new position and states for the animation 
 	for chr in character_name_to_animate:
 		
 		if cutscene_active and character_name_to_animate[chr]["delay"]<=0:
@@ -501,7 +503,8 @@ func _input(event: InputEvent):
 					i.call()
 				#dimm the characters that don't speak
 				for i in characters:
-					if has_node(i) and get_node(i).name in $text_box/Label_name.text.to_lower():
+					
+					if has_node(i) and (get_node(i).name in $text_box/Label_name.text.to_lower() or $text_box/Label_name.text.to_lower() in get_node(i).name or $text_box/Label_name.text.to_lower()=="everyone") :
 						
 						get_node(i).modulate = Color(1,1,1,1)
 						get_node(i).z_index = 1
