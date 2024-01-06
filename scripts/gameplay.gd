@@ -138,12 +138,12 @@ var character_name_to_animate ={}
 #var new_pos
 var cutscene_active = false
 
-func cutscene(_names: Array, new_positions: Array,time : Array = [1], animation_type: Array =["Linear"], delay: Array=[0.0]):
+func cutscene(_names: Array, new_positions: Array,time : Array = [1], animation_type: Array =["Quadratic"], delay: Array=[0.0]):
 	
 	for i in range(_names.size()-time.size()):
 		time.append(2)
 	for i in range(_names.size()-animation_type.size()):
-		animation_type.append("Linear")
+		animation_type.append("Quadratic")
 	for i in range(_names.size()-delay.size()):
 		delay.append(0)
 	
@@ -158,11 +158,14 @@ func cutscene(_names: Array, new_positions: Array,time : Array = [1], animation_
 				if has_node(_names[i]):
 					character_name_to_animate[get_node(_names[i])] = {
 						"new_position":new_positions[i],
+						"start_pos": get_node(_names[i]).position.x,
 						"time":time[i],
+						"default_time": time[i],
 						"animation_type":animation_type[i],
 						"delay":delay[i],
 						"character_speed": (new_positions[i]-get_node(_names[i]).position.x)/time[i],
 						"animation_active": true
+						
 						}
 			cutscene_active = true
 			
@@ -291,7 +294,8 @@ var scene_instructions = [
 
 [
 	remove_characters(["bottom"]),
-	add_characters(["bottom donkey","flute"],[-200,1500]),
+	
+	add_characters(["bottom donkey"],[-200]),
 	cutscene(["flute"],[1200],[1]),
 	change_text('Flute', "Is it my turn?")
 ],
@@ -299,7 +303,7 @@ var scene_instructions = [
 	change_text('Quince', "Yes, go for it. You're just going to see what the noise was and come back.")
 ],
 [
-	cutscene(["flute"],[900],[1.5]),
+	cutscene(["flute"],[900],[2]),
 	change_text('Flute (as Thisbe)', "Most radiant Pyramus, most lily-white of hue...")
 ],
 
@@ -376,7 +380,9 @@ var scene_instructions = [
 	change_text("Bottom",'Of course my mistress!')
 ],
 [
-	cutscene(['titania', "bottom donkey"],[1500,1500])
+	cutscene(['titania'],[1500]),
+	cutscene(["bottom donkey"],[1500])
+	
 ],
 [
 	change_text('',"The end of the Act 3 Scene 1",37)
@@ -437,13 +443,17 @@ func _process(delta):
 				"Linear":
 					
 					chr.position.x+=character_name_to_animate[chr]["character_speed"]*delta
+				
 				"Quadratic":
-					pass
-					
+					chr.position.x+=character_name_to_animate[chr]["character_speed"]*delta*(character_name_to_animate[chr]["time"]+0)*(character_name_to_animate[chr]["default_time"]+character_name_to_animate[chr]["time"])*1.22463916406/+character_name_to_animate[chr]["default_time"]**2#*(character_name_to_animate[chr]["new_position"]-character_name_to_animate[chr]["start_pos"])/character_name_to_animate[chr]["new_position"]*1.43
+					#-434
+					#-653.25364685058
+					#distance to travel:
 		
 		if character_name_to_animate[chr]["delay"]>0:
 			character_name_to_animate[chr]["delay"]-=delta
 		if character_name_to_animate[chr]["time"] <=0:
+			print(chr.position.x , chr.name)
 			character_name_to_animate[chr]["animation_active"] = false	
 	#check if all the animations have finished
 	for chr in character_name_to_animate:
