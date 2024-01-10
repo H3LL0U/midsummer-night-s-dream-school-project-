@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cl55bhivyp3mc"]
+[gd_scene load_steps=5 format=3 uid="uid://cl55bhivyp3mc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_mjeou"]
 [ext_resource type="AudioStream" uid="uid://bekc3apdety8i" path="res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3" id="2_iex45"]
+[ext_resource type="Script" path="res://scripts/speechspeaker.gd" id="3_mmerb"]
+[ext_resource type="Script" path="res://scripts/childspeakers.gd" id="4_8gsgp"]
 
 [node name="gameplay" type="Node2D"]
 script = ExtResource("1_mjeou")
@@ -11,9 +13,12 @@ z_index = -100
 
 [node name="speechspeaker" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_iex45")
+volume_db = -10.065
 pitch_scale = 3.33
+script = ExtResource("3_mmerb")
 
-[node name="soundspaeker" type="AudioStreamPlayer" parent="speechspeaker"]
+[node name="soundspeaker" type="AudioStreamPlayer" parent="speechspeaker"]
+script = ExtResource("4_8gsgp")
 
 [node name="songspeaker" type="AudioStreamPlayer" parent="."]
 volume_db = -33.428

@@ -31,11 +31,14 @@ const sounds = {
 	"text_appear": preload("res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3"),
 	"lovely_picnic":preload("res://assets/sounds/music/04 Mitsukiyo 04 Lovely Picnic.mp3"),
 	"initial_investigation": preload("res://assets/sounds/music/13. Initial Investigation 2001.mp3"),
-	"unwelcome_school":preload("res://assets/sounds/music/07 Mitsukiyo 05 Unwelcome School.mp3")
+	"unwelcome_school":preload("res://assets/sounds/music/07 Mitsukiyo 05 Unwelcome School.mp3"),
+	"mischief":preload("res://assets/sounds/music/carefully-does-it.mp3")
 }
 const menu = {
 	"settings":preload("res://scenes/settings.tscn")
 }
+
+
 #POSSIBLE INSTRUCTIONS
 var text_to_add = ""
 var current_text_speed 
@@ -78,6 +81,7 @@ func add_characters (characters_to_add: Array = [], x_coordinates :Array = []):
 				new_sprite = Sprite2D.new()
 				new_sprite.texture=characters[characters_to_add[idx]]
 				new_sprite.name = characters_to_add[idx]
+				
 				new_sprite.position.x = x_coordinates[idx]
 					
 				
@@ -95,7 +99,7 @@ func add_characters (characters_to_add: Array = [], x_coordinates :Array = []):
 				if new_sprite.position.x < get_viewport().size.x/2:
 					new_sprite.scale.x *=-1
 				add_child(new_sprite)
-				
+			
 	return wrapper
 	
 	
@@ -103,11 +107,13 @@ func remove_characters(_names: Array):
 	var wrapper = func():
 		
 		var character_to_remove
-		for name in _names:
-			character_to_remove = get_node(name)
+		for _name in _names:
+			
+			character_to_remove = get_node(_name)
 		
 			if character_to_remove:
 				character_to_remove.queue_free()
+				remove_child(character_to_remove)
 		
 	return wrapper
 	
@@ -137,6 +143,8 @@ func change_background(new_background: String):
 var character_name_to_animate ={}
 #var new_pos
 var cutscene_active = false
+
+@export var unable_voicelines = true
 
 func cutscene(_names: Array, new_positions: Array,time : Array = [1], animation_type: Array =["Quadratic"], delay: Array=[0.0]):
 	
@@ -189,8 +197,48 @@ func play_sound(sound_name:String, sound_delay_seconds = 0.0):
 	return wrapper
 func END():
 	var wrapper = func():
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/end_credits.tscn")
 	return wrapper
+			
+
+
+func process_scene_instructions():
+	click_counter+=1
+						
+						
+						
+						
+					
+				#if scene_instructions.keys().max()<click_counter+1:
+					#get_tree().quit()
+					
+				
+	for i in scene_instructions[click_counter-1]:
+					
+		i.call()
+	#dimm the characters that don't speak
+	for i in characters:
+					
+		if has_node(i) and (get_node(i).name in $text_box/Label_name.text.to_lower() or $text_box/Label_name.text.to_lower() in get_node(i).name or $text_box/Label_name.text.to_lower()=="everyone") :
+						
+			get_node(i).modulate = Color(1,1,1,1)
+			get_node(i).z_index = 1
+		elif has_node(i):
+			get_node(i).z_index = 0
+			get_node(i).modulate = Color(0.56,0.56,0.56,1)
+				#let the voicelines play
+	if len(voicelines)>=click_counter and unable_voicelines:
+					
+		$speechspeaker/soundspeaker.stream = voicelines[click_counter-1]
+		$speechspeaker/soundspeaker.play()
+	else:
+					
+		$speechspeaker/soundspeaker.stop()
+					
+					
+						
+						
+					
 			
 
 
@@ -291,11 +339,48 @@ var scene_instructions = [
 	change_text('Bottom', "Odors savors sweet. So hath thy breath, my dearest Thisbe dear."),
 	cutscene(["bottom"],[-200],[1],["Linear"],[2])
 ],
-
 [
-	remove_characters(["bottom"]),
+	#include these change_text functions as well! as well please! please add all of these in the right order from up to down (not at the end)
+	change_text('', 'Meanwhile behind the bush...',37),
+	remove_characters(['quince']),
+	remove_characters(['bottom']),
+	add_characters(['bottom'],[500]),
+	change_background('theatre_aside'),
+	change_song('mischief')
 	
-	add_characters(["bottom donkey"],[-200]),
+	
+	
+],
+[
+	change_text("Bottom","I can practise my text while it's not my turn.")
+],
+[
+	add_characters(['puck'],[1500]),
+	cutscene(['puck'],[800]),
+	change_text('Puck',"it's time to commit some mischief!")
+],
+[
+	change_text('Puck', 'Hehehehehe!'),
+	remove_characters(['bottom']),
+	add_characters(['bottom donkey'],[500]),
+	cutscene(['puck'],[-500])
+],
+[
+	change_text('Bottom donkey', "looks like it should be my turn soon."),
+	cutscene(['bottom donkey'],[1500])
+],
+[
+	remove_characters(['bottom donkey']),
+	add_characters(['bottom donkey'],[-300]),
+	change_text('','Meanwhile at the stage...',37),
+	change_background('theatre'),
+	add_characters(['quince'],[500]),
+	change_song('lovely_picnic')
+],
+[
+	
+	
+	
 	cutscene(["flute"],[1200],[1]),
 	change_text('Flute', "Is it my turn?")
 ],
@@ -318,6 +403,7 @@ var scene_instructions = [
 [
 	cutscene(["quince","flute"],[1500,1500],[1,1]),
 	change_text('Quince and Flute', "AAAAAAAAAA!")
+	
 ],
 
 [
@@ -392,17 +478,30 @@ END()
 ]
 ]
 
+var voicelines = []
 
 
 
-var click_counter = 1
+
+
+var click_counter = 0
 @export var settings_opened = false
 
 func _ready():
+	#initialize voicelines
+	for i in range(len(scene_instructions)):
+		
+		var dir = FileAccess.open("res://assets/sounds/voicelines/"+str(i+1)+".mp3",FileAccess.READ)
+		
+		if dir:
+			var str_to_preload = "res://assets/sounds/voicelines/"+str(i+1)+".mp3"
+			voicelines.append(load(str_to_preload))
+		
 	#initial call
-
-	
 	add_child(text_box.instantiate())
+	process_scene_instructions()
+	
+	'''
 	
 	for i in scene_instructions[click_counter-1]:
 		i.call()
@@ -414,6 +513,7 @@ func _ready():
 			get_node(i).z_index = 0
 			
 			get_node(i).modulate = Color(0.56,0.56,0.56,1)
+'''
 
 func _process(delta):
 	#let letters manualy appear
@@ -424,8 +524,8 @@ func _process(delta):
 			current_text_speed+=text_delay_punctuation[text_to_add[0]]
 		$text_box/Label_text.text+=text_to_add[0]
 		text_to_add = text_to_add.substr(1)
-		
-		$speechspeaker.play()
+		if unable_voicelines==false:
+			$speechspeaker.play()
 		
 	
 		
@@ -453,7 +553,7 @@ func _process(delta):
 		if character_name_to_animate[chr]["delay"]>0:
 			character_name_to_animate[chr]["delay"]-=delta
 		if character_name_to_animate[chr]["time"] <=0:
-			print(chr.position.x , chr.name)
+			
 			character_name_to_animate[chr]["animation_active"] = false	
 	#check if all the animations have finished
 	for chr in character_name_to_animate:
@@ -498,6 +598,8 @@ func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false and cutscene_active==false:
+				process_scene_instructions()
+				'''
 				click_counter+=1
 						
 						
@@ -521,12 +623,22 @@ func _input(event: InputEvent):
 					elif has_node(i):
 						get_node(i).z_index = 0
 						get_node(i).modulate = Color(0.56,0.56,0.56,1)
-						
+				#let the voicelines play
+				if len(voicelines)>=click_counter and unable_voicelines:
+					
+					$speechspeaker/soundspeaker.stream = voicelines[click_counter-1]
+					$speechspeaker/soundspeaker.play()
+				else:
+					
+					$speechspeaker/soundspeaker.stop()
+					
+			'''
+			
 						
 						
 					
 			
-			#finish the text when it's still showing
+			#finish the text when it's still showing and you click
 			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
 				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""

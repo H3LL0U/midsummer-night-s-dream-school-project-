@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3 uid="uid://dde0aro1y6h0s"]
+
+[ext_resource type="Script" path="res://scripts/end_credits_paralax.gd" id="1_nhcvb"]
+[ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="2_vst2f"]
+[ext_resource type="FontFile" uid="uid://ciu3dyd4v6i0x" path="res://assets/fonts/calibri-bold.ttf" id="3_80pb4"]
+
+[node name="End credits" type="Node2D"]
+
+[node name="end_credits_paralax" type="ParallaxBackground" parent="."]
+scroll_limit_begin = Vector2(0, 10)
+scroll_limit_end = Vector2(0, -6700)
+script = ExtResource("1_nhcvb")
+speed = 100
+delay = 2.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="end_credits_paralax"]
+
+[node name="Sprite2D" type="Sprite2D" parent="end_credits_paralax/ParallaxLayer"]
+position = Vector2(611, 4411)
+scale = Vector2(2.89375, 20.6687)
+texture = ExtResource("2_vst2f")
+
+[node name="Label" type="Label" parent="end_credits_paralax/ParallaxLayer"]
+offset_left = 110.0
+offset_top = 205.0
+offset_right = 1083.0
+offset_bottom = 8170.0
+theme_override_fonts/font = ExtResource("3_80pb4")
+theme_override_font_sizes/font_size = 75
+text = "H3LL_0U
+STUDIOS
+
+
+
+
+
+
+
+Voice actors
+
+
+
+Titania and Puck
+by
+Emilia
+
+
+
+Starveling
+by
+Menko
+
+
+
+Quince
+by
+Kostya
+
+
+
+Snug and Snout
+by
+Luuk
+
+
+
+Sound effects and Music
+
+
+
+Lovely Picnic and
+Unwelcome School
+by
+Mutsukiyo
+
+
+
+Initial Investigation
+by
+Masakazu Sugimori
+
+
+
+
+Carefully Does It
+by
+Geoff Harvey (Pixabay)
+
+
+
+
+RPG text speech sound
+by
+666HeroHero (Pixabay)
+
+
+
+Character Sprites
+from midsummer night's
+dream (1999 film)
+
+
+
+
+Programming
+Kostya
+
+
+
+Thanks for playing!
+
+
+
+"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
