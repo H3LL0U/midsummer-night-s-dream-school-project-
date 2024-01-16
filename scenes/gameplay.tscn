@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl55bhivyp3mc"]
+[gd_scene load_steps=8 format=3 uid="uid://cl55bhivyp3mc"]
 
 [ext_resource type="Script" path="res://scripts/gameplay.gd" id="1_mjeou"]
 [ext_resource type="AudioStream" uid="uid://bekc3apdety8i" path="res://assets/sounds/sound effects/rpg-text-speech-sound-131477-[AudioTrimmer.com].mp3" id="2_iex45"]
 [ext_resource type="Script" path="res://scripts/speechspeaker.gd" id="3_mmerb"]
 [ext_resource type="Script" path="res://scripts/childspeakers.gd" id="4_8gsgp"]
+[ext_resource type="PackedScene" uid="uid://dt1y6tt12wmh7" path="res://scenes/timeline.tscn" id="5_qpey6"]
+[ext_resource type="Texture2D" uid="uid://cacxat434ehbr" path="res://assets/sprites/GUI ellemts/settings_button/settings button.png" id="6_66vgy"]
+[ext_resource type="Texture2D" uid="uid://dya2dd8cjybwg" path="res://assets/sprites/GUI ellemts/settings_button/settings button pressed.png" id="7_46xb4"]
 
 [node name="gameplay" type="Node2D"]
 script = ExtResource("1_mjeou")
@@ -22,3 +25,15 @@ script = ExtResource("4_8gsgp")
 
 [node name="songspeaker" type="AudioStreamPlayer" parent="."]
 volume_db = -33.428
+
+[node name="timeline" parent="." instance=ExtResource("5_qpey6")]
+position = Vector2(-14, 4)
+
+[node name="settings_button" type="TextureButton" parent="."]
+offset_left = 15.0
+offset_top = 11.0
+offset_right = 655.0
+offset_bottom = 651.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_66vgy")
+texture_pressed = ExtResource("7_46xb4")

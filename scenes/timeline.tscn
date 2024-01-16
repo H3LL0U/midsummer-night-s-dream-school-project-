@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt1y6tt12wmh7"]
+
+[ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="1_dr1gl"]
+[ext_resource type="Script" path="res://scenes/timeline.gd" id="1_opaqq"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hx7xf"]
+
+[node name="timeline" type="Node2D"]
+position = Vector2(-13, 5)
+script = ExtResource("1_opaqq")
+
+[node name="black_canvas" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(587, 25.5)
+scale = Vector2(1.5, 0.049)
+texture = ExtResource("1_dr1gl")
+
+[node name="timeline_line" type="Sprite2D" parent="."]
+position = Vector2(586.5, 25.9794)
+scale = Vector2(688.5, 12.968)
+texture = SubResource("CanvasTexture_hx7xf")
+
+[node name="timeline_complete" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+position = Vector2(242.3, 19.5)
+scale = Vector2(688.5, 12.968)
+texture = SubResource("CanvasTexture_hx7xf")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 943.0
+offset_top = 3.0
+offset_right = 983.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 30
+text = "%"

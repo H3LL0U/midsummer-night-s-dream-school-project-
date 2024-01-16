@@ -39,6 +39,8 @@ const menu = {
 }
 
 
+	
+
 #POSSIBLE INSTRUCTIONS
 var text_to_add = ""
 var current_text_speed 
@@ -238,8 +240,15 @@ func process_scene_instructions():
 					
 						
 						
-					
-			
+func open_settings_menu(event):
+
+	if !has_node("settings"):
+		settings_opened =true
+		add_child(menu["settings"].instantiate())
+	else:
+		settings_opened = false
+		$settings.queue_free()
+		remove_child($settings)
 
 
 
@@ -487,13 +496,16 @@ var voicelines = []
 var click_counter = 0
 @export var settings_opened = false
 
+#get the completion
+
+@export var completion = 0
 func _ready():
 	#initialize voicelines
 	for i in range(len(scene_instructions)):
 		
-		var dir = FileAccess.open("res://assets/sounds/voicelines/"+str(i+1)+".mp3",FileAccess.READ)
 		
-		if dir:
+		if ResourceLoader.exists("res://assets/sounds/voicelines/"+str(i+1)+".mp3"):
+			
 			var str_to_preload = "res://assets/sounds/voicelines/"+str(i+1)+".mp3"
 			voicelines.append(load(str_to_preload))
 		
@@ -578,27 +590,36 @@ func _process(delta):
 		sound_delay-=delta
 		
 		
-		
-				
+	#update completion
+	completion = float(click_counter) / float(len(scene_instructions))
 	
-	
+
+
+
 
 	
 	
 	
 
+
+
+
 		
 		
 		
 		
 		
 	
-
+var inputs = [KEY_NONE]
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
 		if event.pressed:
+			
 			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false and cutscene_active==false:
+
 				process_scene_instructions()
+				inputs.append(MOUSE_BUTTON_LEFT)
+				
 				'''
 				click_counter+=1
 						
@@ -642,16 +663,18 @@ func _input(event: InputEvent):
 			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
 				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""
-			
-				
 	if event is InputEventKey and event.pressed:
+		
+		if event.keycode == KEY_ESCAPE:
+			open_settings_menu(event)
+'''	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
 			if !has_node("settings"):
 				settings_opened =true
 				add_child(menu["settings"].instantiate())
 			else:
 				settings_opened = false
-				$settings.queue_free()
+				$settings.queue_free()'''
 				
 				
 			
@@ -659,4 +682,13 @@ func _input(event: InputEvent):
 				
 
 			
-		
+
+
+
+
+
+
+
+
+
+

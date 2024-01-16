@@ -1,7 +1,9 @@
 extends Node2D
 
 var script_toggle_checkbox = false
+var confirmation_menu
 func _ready():
+	confirmation_menu = preload("res://scenes/confirmation_menu.tscn")
 	if has_node("/root/gameplay"):
 		script_toggle_checkbox = true
 		$CheckBox.button_pressed = $/root/gameplay.unable_voicelines
@@ -10,7 +12,10 @@ func _ready():
 		
 		
 func _on_quit_button_pressed():
-	get_tree().quit()
+	if !has_node("confirmation_menu"):
+		add_child(confirmation_menu.instantiate())
+
+		
 
 
 func _on_resume_pressed():
