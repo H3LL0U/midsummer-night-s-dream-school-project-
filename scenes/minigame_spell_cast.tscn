@@ -1,0 +1,923 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxi4uu5nikhi2"]
+
+[ext_resource type="Texture2D" uid="uid://ocj5quitg3q0" path="res://assets/sprites/star.png" id="1_83nk2"]
+[ext_resource type="Script" path="res://scripts/quick_time_event_point.gd" id="2_jej57"]
+[ext_resource type="Texture2D" uid="uid://u36dp3gt0pba" path="res://assets/sprites/GUI ellemts/quick_time_event/quick_time_event_button1.png" id="2_shilg"]
+[ext_resource type="Texture2D" uid="uid://15p84amegnw" path="res://assets/sprites/GUI ellemts/quick_time_event/quick_time_event_button2.png" id="3_nmp5a"]
+[ext_resource type="Texture2D" uid="uid://ckmpntojfpdx8" path="res://assets/backgrounds/theatre_background_aside.jpg" id="5_jg8vi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2b7g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_shilg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nmp5a")
+}],
+"loop": true,
+"name": &"press",
+"speed": 25.0
+}]
+
+[node name="minigame_spell_cast" type="Node2D"]
+
+[node name="reference_shape" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(620.563, 344.156)
+scale = Vector2(1.40479, 1.28397)
+texture = ExtResource("1_83nk2")
+
+[node name="quick_time_event1" type="AnimatedSprite2D" parent="."]
+position = Vector2(856, 515)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+my_turn = true
+
+[node name="Label" type="Label" parent="quick_time_event1"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event2" type="AnimatedSprite2D" parent="."]
+position = Vector2(809, 501)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event2"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event3" type="AnimatedSprite2D" parent="."]
+position = Vector2(762, 487)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "d"
+
+[node name="Label" type="Label" parent="quick_time_event3"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event4" type="AnimatedSprite2D" parent="."]
+position = Vector2(715, 473)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event4"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event5" type="AnimatedSprite2D" parent="."]
+position = Vector2(667, 459)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Space"
+
+[node name="Label" type="Label" parent="quick_time_event5"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event6" type="AnimatedSprite2D" parent="."]
+position = Vector2(634, 492)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "k"
+
+[node name="Label" type="Label" parent="quick_time_event6"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event7" type="AnimatedSprite2D" parent="."]
+position = Vector2(601, 525)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event7"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event8" type="AnimatedSprite2D" parent="."]
+position = Vector2(568, 559)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "d"
+
+[node name="Label" type="Label" parent="quick_time_event8"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event9" type="AnimatedSprite2D" parent="."]
+position = Vector2(535, 592)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event9"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event10" type="AnimatedSprite2D" parent="."]
+position = Vector2(534, 547)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "b"
+
+[node name="Label" type="Label" parent="quick_time_event10"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event11" type="AnimatedSprite2D" parent="."]
+position = Vector2(534, 502)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "r"
+
+[node name="Label" type="Label" parent="quick_time_event11"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event12" type="AnimatedSprite2D" parent="."]
+position = Vector2(535, 457)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event12"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event14" type="AnimatedSprite2D" parent="."]
+position = Vector2(490, 393)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event14"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event13" type="AnimatedSprite2D" parent="."]
+position = Vector2(535, 412)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Space"
+
+[node name="Label" type="Label" parent="quick_time_event13"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event15" type="AnimatedSprite2D" parent="."]
+position = Vector2(445, 374)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "h"
+
+[node name="Label" type="Label" parent="quick_time_event15"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event16" type="AnimatedSprite2D" parent="."]
+position = Vector2(400, 355)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event16"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event17" type="AnimatedSprite2D" parent="."]
+position = Vector2(354, 337)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "l"
+
+[node name="Label" type="Label" parent="quick_time_event17"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event18" type="AnimatedSprite2D" parent="."]
+position = Vector2(401, 323)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event18"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event19" type="AnimatedSprite2D" parent="."]
+position = Vector2(450, 309)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "j"
+
+[node name="Label" type="Label" parent="quick_time_event19"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event20" type="AnimatedSprite2D" parent="."]
+position = Vector2(496, 295)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Space"
+
+[node name="Label" type="Label" parent="quick_time_event20"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event21" type="AnimatedSprite2D" parent="."]
+position = Vector2(543, 281)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "m"
+
+[node name="Label" type="Label" parent="quick_time_event21"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event22" type="AnimatedSprite2D" parent="."]
+position = Vector2(548, 236)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event22"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event23" type="AnimatedSprite2D" parent="."]
+position = Vector2(554, 192)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "h"
+
+[node name="Label" type="Label" parent="quick_time_event23"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event24" type="AnimatedSprite2D" parent="."]
+position = Vector2(559, 147)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event24"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event25" type="AnimatedSprite2D" parent="."]
+position = Vector2(565, 102)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "l"
+
+[node name="Label" type="Label" parent="quick_time_event25"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event26" type="AnimatedSprite2D" parent="."]
+position = Vector2(594, 139)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event26"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event27" type="AnimatedSprite2D" parent="."]
+position = Vector2(623, 175)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "j"
+
+[node name="Label" type="Label" parent="quick_time_event27"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event28" type="AnimatedSprite2D" parent="."]
+position = Vector2(651, 212)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "d"
+
+[node name="Label" type="Label" parent="quick_time_event28"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event29" type="AnimatedSprite2D" parent="."]
+position = Vector2(681, 247)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "o"
+
+[node name="Label" type="Label" parent="quick_time_event29"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event30" type="AnimatedSprite2D" parent="."]
+position = Vector2(730, 239)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "n"
+
+[node name="Label" type="Label" parent="quick_time_event30"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event31" type="AnimatedSprite2D" parent="."]
+position = Vector2(778, 230)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "k"
+
+[node name="Label" type="Label" parent="quick_time_event31"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event32" type="AnimatedSprite2D" parent="."]
+position = Vector2(827, 221)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "i"
+
+[node name="Label" type="Label" parent="quick_time_event32"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event33" type="AnimatedSprite2D" parent="."]
+position = Vector2(875, 212)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "f"
+
+[node name="Label" type="Label" parent="quick_time_event33"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event34" type="AnimatedSprite2D" parent="."]
+position = Vector2(846, 248)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "y"
+
+[node name="Label" type="Label" parent="quick_time_event34"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event35" type="AnimatedSprite2D" parent="."]
+position = Vector2(817, 284)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Space"
+
+[node name="Label" type="Label" parent="quick_time_event35"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event36" type="AnimatedSprite2D" parent="."]
+position = Vector2(787, 321)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "h"
+
+[node name="Label" type="Label" parent="quick_time_event36"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event37" type="AnimatedSprite2D" parent="."]
+position = Vector2(759, 358)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "o"
+
+[node name="Label" type="Label" parent="quick_time_event37"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event38" type="AnimatedSprite2D" parent="."]
+position = Vector2(782, 397)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "c"
+
+[node name="Label" type="Label" parent="quick_time_event38"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event39" type="AnimatedSprite2D" parent="."]
+position = Vector2(807, 437)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "u"
+
+[node name="Label" type="Label" parent="quick_time_event39"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event40" type="AnimatedSprite2D" parent="."]
+position = Vector2(832, 476)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "s"
+
+[node name="Label" type="Label" parent="quick_time_event40"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event41" type="AnimatedSprite2D" parent="."]
+position = Vector2(857, 515)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Enter"
+
+[node name="Label" type="Label" parent="quick_time_event41"]
+offset_left = -180.0
+offset_top = -280.0
+offset_right = 64.9998
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event42" type="AnimatedSprite2D" parent="."]
+position = Vector2(1185, 555)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "Enter"
+
+[node name="Label" type="Label" parent="quick_time_event42"]
+offset_left = -180.0
+offset_top = -280.0
+offset_right = 64.9998
+offset_bottom = 129.0
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Connection_line" type="Line2D" parent="."]
+z_index = 1
+width = 5.0
+default_color = Color(1, 1, 0, 1)
+
+[node name="background" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(623, 343)
+scale = Vector2(0.970312, 0.963889)
+texture = ExtResource("5_jg8vi")
+
+[connection signal="frame_changed" from="quick_time_event1" to="quick_time_event1" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event2" to="quick_time_event2" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event3" to="quick_time_event3" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event4" to="quick_time_event4" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event5" to="quick_time_event5" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event6" to="quick_time_event6" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event7" to="quick_time_event7" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event8" to="quick_time_event8" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event9" to="quick_time_event9" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event10" to="quick_time_event10" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event11" to="quick_time_event11" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event12" to="quick_time_event12" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event14" to="quick_time_event14" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event13" to="quick_time_event13" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event15" to="quick_time_event15" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event16" to="quick_time_event16" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event17" to="quick_time_event17" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event18" to="quick_time_event18" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event19" to="quick_time_event19" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event20" to="quick_time_event20" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event21" to="quick_time_event21" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event22" to="quick_time_event22" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event23" to="quick_time_event23" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event24" to="quick_time_event24" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event25" to="quick_time_event25" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event26" to="quick_time_event26" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event27" to="quick_time_event27" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event28" to="quick_time_event28" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event29" to="quick_time_event29" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event30" to="quick_time_event30" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event31" to="quick_time_event31" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event32" to="quick_time_event32" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event33" to="quick_time_event33" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event34" to="quick_time_event34" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event35" to="quick_time_event35" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event36" to="quick_time_event36" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event37" to="quick_time_event37" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event38" to="quick_time_event38" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event39" to="quick_time_event39" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event40" to="quick_time_event40" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event41" to="quick_time_event41" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event42" to="quick_time_event42" method="_on_frame_changed"]

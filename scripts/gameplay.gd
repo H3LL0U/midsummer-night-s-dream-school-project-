@@ -38,6 +38,9 @@ const menu = {
 	"settings":preload("res://scenes/settings.tscn")
 }
 
+#const  mini_games = {
+	#"moon_catcher": "???"
+#}
 
 	
 
@@ -240,7 +243,7 @@ func process_scene_instructions():
 					
 						
 						
-func open_settings_menu(event):
+func open_settings_menu():
 
 	if !has_node("settings"):
 		settings_opened =true
@@ -610,16 +613,20 @@ func _process(delta):
 		
 		
 	
-var inputs = [KEY_NONE]
-func _input(event: InputEvent):
-	if event is InputEventMouseButton:
+func _on_settings_button_pressed():
+	open_settings_menu()
+
+func _unhandled_input (event: InputEvent):
+	
+	if event is InputEventMouseButton or event is InputEventKey:
+		
 		if event.pressed:
 			
-			if event.button_mask == MOUSE_BUTTON_LEFT and text_to_add == "" and settings_opened==false and cutscene_active==false:
-
-				process_scene_instructions()
-				inputs.append(MOUSE_BUTTON_LEFT)
+			if event is InputEventMouseButton and (event.button_mask == MOUSE_BUTTON_LEFT) and text_to_add == "" and settings_opened==false and cutscene_active==false:
 				
+				process_scene_instructions()
+			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add == "" and settings_opened==false and cutscene_active==false:
+				process_scene_instructions()
 				'''
 				click_counter+=1
 						
@@ -660,13 +667,16 @@ func _input(event: InputEvent):
 					
 			
 			#finish the text when it's still showing and you click
-			elif event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
+			elif event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
+				$text_box/Label_text.text +=text_to_add
+				text_to_add = ""
+			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add != "" and settings_opened==false:
 				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""
 	if event is InputEventKey and event.pressed:
 		
 		if event.keycode == KEY_ESCAPE:
-			open_settings_menu(event)
+			open_settings_menu()
 '''	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:
 			if !has_node("settings"):
@@ -682,6 +692,9 @@ func _input(event: InputEvent):
 				
 
 			
+
+
+
 
 
 

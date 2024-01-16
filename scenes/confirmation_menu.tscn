@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://csy7hrbnenkrg"]
 
-[ext_resource type="Script" path="res://scenes/confirmation_menu.gd" id="1_goaqh"]
+[ext_resource type="Script" path="res://scripts/confirmation_menu.gd" id="1_ehiuu"]
 [ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="1_ns0vr"]
 
 [node name="confirmation_menu" type="Node2D"]
 position = Vector2(-345, -195)
 scale = Vector2(1.7, 1.7)
-script = ExtResource("1_goaqh")
+script = ExtResource("1_ehiuu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(549, 298)

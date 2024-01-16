@@ -30,10 +30,14 @@ volume_db = -33.428
 position = Vector2(-14, 4)
 
 [node name="settings_button" type="TextureButton" parent="."]
+z_index = 100
 offset_left = 15.0
 offset_top = 11.0
 offset_right = 655.0
 offset_bottom = 651.0
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.15, 0.15)
+focus_mode = 0
 texture_normal = ExtResource("6_66vgy")
 texture_pressed = ExtResource("7_46xb4")
+
+[connection signal="pressed" from="settings_button" to="." method="_on_settings_button_pressed"]
