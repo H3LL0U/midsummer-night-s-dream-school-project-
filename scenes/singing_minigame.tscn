@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://cp5yotfr0sckg"]
+
+[ext_resource type="PackedScene" uid="uid://dx3ncnv2oxm4h" path="res://scenes/sing_button.tscn" id="1_f3sbk"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_omou6"]
+action = &"up"
+
+[sub_resource type="Shortcut" id="Shortcut_rbqdo"]
+events = [SubResource("InputEventAction_omou6")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_v64i4"]
+action = &"left"
+
+[sub_resource type="Shortcut" id="Shortcut_o77v7"]
+events = [SubResource("InputEventAction_v64i4")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_2nw63"]
+action = &"right"
+
+[sub_resource type="Shortcut" id="Shortcut_wb7kb"]
+events = [SubResource("InputEventAction_2nw63")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_cekl5"]
+action = &"down"
+
+[sub_resource type="Shortcut" id="Shortcut_d366m"]
+events = [SubResource("InputEventAction_cekl5")]
+
+[node name="singing minigame" type="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 92.0
+offset_top = 35.0
+offset_right = 132.0
+offset_bottom = 75.0
+scale = Vector2(0.2, 0.2)
+
+[node name="sing_button" parent="VBoxContainer" instance=ExtResource("1_f3sbk")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_rbqdo")
+shortcut_button = "↑"
+
+[node name="sing_button2" parent="VBoxContainer" instance=ExtResource("1_f3sbk")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_o77v7")
+shortcut_button = "←"
+
+[node name="sing_button3" parent="VBoxContainer" instance=ExtResource("1_f3sbk")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_wb7kb")
+shortcut_button = "→"
+
+[node name="sing_button4" parent="VBoxContainer" instance=ExtResource("1_f3sbk")]
+layout_mode = 2
+shortcut = SubResource("Shortcut_d366m")
+shortcut_button = "↓"

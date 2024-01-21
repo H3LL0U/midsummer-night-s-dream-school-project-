@@ -1,10 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxi4uu5nikhi2"]
+[gd_scene load_steps=11 format=3 uid="uid://bxi4uu5nikhi2"]
 
 [ext_resource type="Texture2D" uid="uid://ocj5quitg3q0" path="res://assets/sprites/star.png" id="1_83nk2"]
+[ext_resource type="Script" path="res://scenes/minigame_spell_cast.gd" id="1_y57bk"]
 [ext_resource type="Script" path="res://scripts/quick_time_event_point.gd" id="2_jej57"]
 [ext_resource type="Texture2D" uid="uid://u36dp3gt0pba" path="res://assets/sprites/GUI ellemts/quick_time_event/quick_time_event_button1.png" id="2_shilg"]
 [ext_resource type="Texture2D" uid="uid://15p84amegnw" path="res://assets/sprites/GUI ellemts/quick_time_event/quick_time_event_button2.png" id="3_nmp5a"]
-[ext_resource type="Texture2D" uid="uid://ckmpntojfpdx8" path="res://assets/backgrounds/theatre_background_aside.jpg" id="5_jg8vi"]
+[ext_resource type="Texture2D" uid="uid://cne74d12w46hq" path="res://assets/sprites/star_full.png" id="5_j2dw6"]
+[ext_resource type="PackedScene" uid="uid://l7mjctvhvrif" path="res://scenes/timer.tscn" id="6_ahu22"]
+[ext_resource type="Script" path="res://scenes/timer.gd" id="7_81fdr"]
+[ext_resource type="Texture2D" uid="uid://bmujw2l7he4qc" path="res://assets/sprites/white_square.jpg" id="9_7xsfv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w2b7g"]
 animations = [{
@@ -21,6 +25,10 @@ animations = [{
 }]
 
 [node name="minigame_spell_cast" type="Node2D"]
+process_mode = 2
+z_index = 99
+position = Vector2(86, -10)
+script = ExtResource("1_y57bk")
 
 [node name="reference_shape" type="Sprite2D" parent="."]
 visible = false
@@ -268,26 +276,6 @@ text = "w
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="quick_time_event14" type="AnimatedSprite2D" parent="."]
-position = Vector2(490, 393)
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_w2b7g")
-animation = &"press"
-speed_scale = 0.35
-script = ExtResource("2_jej57")
-quick_event_button = "a"
-
-[node name="Label" type="Label" parent="quick_time_event14"]
-offset_left = -57.5539
-offset_top = -205.838
-offset_right = 187.446
-offset_bottom = 203.162
-theme_override_font_sizes/font_size = 300
-text = "w
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="quick_time_event13" type="AnimatedSprite2D" parent="."]
 position = Vector2(535, 412)
 scale = Vector2(0.05, 0.05)
@@ -298,6 +286,26 @@ script = ExtResource("2_jej57")
 quick_event_button = "Space"
 
 [node name="Label" type="Label" parent="quick_time_event13"]
+offset_left = -57.5539
+offset_top = -205.838
+offset_right = 187.446
+offset_bottom = 203.162
+theme_override_font_sizes/font_size = 300
+text = "w
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quick_time_event14" type="AnimatedSprite2D" parent="."]
+position = Vector2(490, 393)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_w2b7g")
+animation = &"press"
+speed_scale = 0.35
+script = ExtResource("2_jej57")
+quick_event_button = "a"
+
+[node name="Label" type="Label" parent="quick_time_event14"]
 offset_left = -57.5539
 offset_top = -205.838
 offset_right = 187.446
@@ -848,36 +856,38 @@ text = "w
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="quick_time_event42" type="AnimatedSprite2D" parent="."]
-position = Vector2(1185, 555)
-scale = Vector2(0.05, 0.05)
-sprite_frames = SubResource("SpriteFrames_w2b7g")
-animation = &"press"
-speed_scale = 0.35
-script = ExtResource("2_jej57")
-quick_event_button = "Enter"
-
-[node name="Label" type="Label" parent="quick_time_event42"]
-offset_left = -180.0
-offset_top = -280.0
-offset_right = 64.9998
-offset_bottom = 129.0
-theme_override_font_sizes/font_size = 300
-text = "w
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Connection_line" type="Line2D" parent="."]
 z_index = 1
 width = 5.0
 default_color = Color(1, 1, 0, 1)
 
+[node name="full" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 99
+position = Vector2(588, 319)
+scale = Vector2(1.55, 1.55)
+texture = ExtResource("5_j2dw6")
+
+[node name="timeline" parent="." instance=ExtResource("6_ahu22")]
+position = Vector2(188, 617)
+script = ExtResource("7_81fdr")
+default_time = 90.0
+timer_active = true
+
 [node name="background" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(623, 343)
-scale = Vector2(0.970312, 0.963889)
-texture = ExtResource("5_jg8vi")
+position = Vector2(529.5, 328.5)
+scale = Vector2(0.815, 0.597)
+texture = ExtResource("9_7xsfv")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 156.0
+offset_top = 38.0
+offset_right = 562.0
+offset_bottom = 118.0
+theme_override_font_sizes/font_size = 50
+text = "Cast a spell!"
 
 [connection signal="frame_changed" from="quick_time_event1" to="quick_time_event1" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event2" to="quick_time_event2" method="_on_frame_changed"]
@@ -891,8 +901,8 @@ texture = ExtResource("5_jg8vi")
 [connection signal="frame_changed" from="quick_time_event10" to="quick_time_event10" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event11" to="quick_time_event11" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event12" to="quick_time_event12" method="_on_frame_changed"]
-[connection signal="frame_changed" from="quick_time_event14" to="quick_time_event14" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event13" to="quick_time_event13" method="_on_frame_changed"]
+[connection signal="frame_changed" from="quick_time_event14" to="quick_time_event14" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event15" to="quick_time_event15" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event16" to="quick_time_event16" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event17" to="quick_time_event17" method="_on_frame_changed"]
@@ -920,4 +930,3 @@ texture = ExtResource("5_jg8vi")
 [connection signal="frame_changed" from="quick_time_event39" to="quick_time_event39" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event40" to="quick_time_event40" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event41" to="quick_time_event41" method="_on_frame_changed"]
-[connection signal="frame_changed" from="quick_time_event42" to="quick_time_event42" method="_on_frame_changed"]

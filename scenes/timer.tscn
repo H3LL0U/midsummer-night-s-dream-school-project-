@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://l7mjctvhvrif"]
+
+[ext_resource type="Script" path="res://scripts/timeline.gd" id="1_rvgn4"]
+[ext_resource type="Texture2D" uid="uid://di31xd82vj6ao" path="res://assets/sprites/black_square.png" id="2_jp41a"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hx7xf"]
+
+[node name="timer" type="Node2D"]
+position = Vector2(229, 556)
+rotation = 4.71239
+scale = Vector2(0.5, 2)
+script = ExtResource("1_rvgn4")
+
+[node name="black_canvas" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(587, 25.5)
+scale = Vector2(1.5, 0.049)
+texture = ExtResource("2_jp41a")
+
+[node name="timeline_line" type="Sprite2D" parent="."]
+position = Vector2(586.5, 25.9794)
+scale = Vector2(688.5, 12.968)
+texture = SubResource("CanvasTexture_hx7xf")
+
+[node name="timeline_complete" type="Sprite2D" parent="."]
+modulate = Color(1, 0.494118, 0, 1)
+z_index = 1
+position = Vector2(242.3, 19.5)
+scale = Vector2(688.5, 12.968)
+texture = SubResource("CanvasTexture_hx7xf")
+centered = false

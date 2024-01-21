@@ -8,6 +8,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1t7q0"]
 
 [node name="settings" type="Node2D"]
+process_mode = 3
 z_index = 100
 script = ExtResource("1_5kyid")
 

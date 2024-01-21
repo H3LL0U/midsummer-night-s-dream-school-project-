@@ -38,9 +38,9 @@ const menu = {
 	"settings":preload("res://scenes/settings.tscn")
 }
 
-#const  mini_games = {
-	#"moon_catcher": "???"
-#}
+const  mini_games = {
+	"cast_a_spell": preload("res://scenes/minigame_spell_cast.tscn")
+}
 
 	
 
@@ -190,8 +190,13 @@ func change_song(song_name:String):
 			$songspeaker.stream = sounds[song_name]
 			$songspeaker.play()
 	return wrapper
+	
+	
+	
 var sound_delay = 0.0
 var play_sound_effect = false
+
+
 func play_sound(sound_name:String, sound_delay_seconds = 0.0):
 	var wrapper = func():
 		if sound_name in sounds:
@@ -200,16 +205,32 @@ func play_sound(sound_name:String, sound_delay_seconds = 0.0):
 			play_sound_effect = true
 			
 	return wrapper
+	
+	
+func switch_to_minigame():
+	var wrapper = func ():
+		voicelines_index-=1
+		add_child(mini_games["cast_a_spell"].instantiate())
+		
+		get_tree().paused = true
+		$speechspeaker/soundspeaker.stop()
+		
+		
+		
+	return wrapper
+
+
 func END():
 	var wrapper = func():
 		get_tree().change_scene_to_file("res://scenes/end_credits.tscn")
 	return wrapper
 			
 
-
+var voicelines_index = 0
 func process_scene_instructions():
 	click_counter+=1
-						
+	
+	voicelines_index+=1
 						
 						
 						
@@ -218,11 +239,11 @@ func process_scene_instructions():
 					#get_tree().quit()
 					
 				
-	for i in scene_instructions[click_counter-1]:
+	#for i in scene_instructions[click_counter-1]:
 					
-		i.call()
-	#dimm the characters that don't speak
-	for i in characters:
+		#i.call()
+	
+	'''for i in characters:
 					
 		if has_node(i) and (get_node(i).name in $text_box/Label_name.text.to_lower() or $text_box/Label_name.text.to_lower() in get_node(i).name or $text_box/Label_name.text.to_lower()=="everyone") :
 						
@@ -232,15 +253,29 @@ func process_scene_instructions():
 			get_node(i).z_index = 0
 			get_node(i).modulate = Color(0.56,0.56,0.56,1)
 				#let the voicelines play
-	if len(voicelines)>=click_counter and unable_voicelines:
+	'''
+	if (len(voicelines)>=click_counter and unable_voicelines ) :
 					
-		$speechspeaker/soundspeaker.stream = voicelines[click_counter-1]
+		$speechspeaker/soundspeaker.stream = voicelines[voicelines_index-1]
 		$speechspeaker/soundspeaker.play()
 	else:
-					
+			
+			
+				
 		$speechspeaker/soundspeaker.stop()
+	#dimm the characters that don't speak
+	for i in scene_instructions[click_counter-1]:
 					
+		i.call()
+	for i in characters:
 					
+		if has_node(i) and (get_node(i).name in $text_box/Label_name.text.to_lower() or $text_box/Label_name.text.to_lower() in get_node(i).name or $text_box/Label_name.text.to_lower()=="everyone") :
+						
+			get_node(i).modulate = Color(1,1,1,1)
+			get_node(i).z_index = 1
+		elif has_node(i):
+			get_node(i).z_index = 0
+			get_node(i).modulate = Color(0.56,0.56,0.56,1)
 						
 						
 func open_settings_menu():
@@ -255,6 +290,7 @@ func open_settings_menu():
 
 
 
+	
 #instructions used per scene (index indecates the clicks made counting from 1)
 
 
@@ -268,8 +304,11 @@ var scene_instructions = [
 	
 	change_song("initial_investigation")
 ],
+
  [
-	change_text('Bottom', "Peter Quince?")
+	
+	change_text('Bottom', "Peter Quince?"),
+	
 ],
  [
 	change_text('Quince', "What's up, Bottom?")
@@ -323,7 +362,7 @@ var scene_instructions = [
 	change_text('Bottom', "Then leave a window open for the moon or have someone come in with a lantern and thorns to represent Moonshine.")
 ],
 [
-	change_text('Quince', "And what a bout the wall?")
+	change_text('Quince', "And what about the wall?")
 ],
 [
 	change_text('Bottom', "Snout can play a wall with plaster or loam, and Pyramus and Thisbe can talk through a cranny.")
@@ -372,6 +411,10 @@ var scene_instructions = [
 	change_text('Puck',"it's time to commit some mischief!")
 ],
 [
+	switch_to_minigame()
+],
+[
+	
 	change_text('Puck', 'Hehehehehe!'),
 	remove_characters(['bottom']),
 	add_characters(['bottom donkey'],[500]),
@@ -511,7 +554,10 @@ func _ready():
 			
 			var str_to_preload = "res://assets/sounds/voicelines/"+str(i+1)+".mp3"
 			voicelines.append(load(str_to_preload))
-		
+		else:
+			var str_to_preload = "res://assets/sounds/voicelines/s.mp3"
+			voicelines.append(load(str_to_preload))
+			
 	#initial call
 	add_child(text_box.instantiate())
 	process_scene_instructions()
@@ -618,7 +664,7 @@ func _on_settings_button_pressed():
 
 func _unhandled_input (event: InputEvent):
 	
-	if event is InputEventMouseButton or event is InputEventKey:
+	if event is InputEventMouseButton or event is InputEventKey and !event.is_echo():
 		
 		if event.pressed:
 			

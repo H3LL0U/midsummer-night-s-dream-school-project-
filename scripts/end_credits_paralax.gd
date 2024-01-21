@@ -28,7 +28,7 @@ func _input(event):
 				scroll_offset.y +=speed
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				scroll_offset.y -=speed
-	elif event is InputEventKey:
+	elif event is InputEventKey and !event.is_echo() and event.is_pressed():
 		get_tree().change_scene_to_file("res://.godot/exported/133200997/export-ce437267b8bb1179a3485e665475480c-main menu.scn")
 				
 				

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx3ncnv2oxm4h"]
+
+[ext_resource type="Texture2D" uid="uid://gr0jgyawsh8a" path="res://assets/sprites/GUI ellemts/singing_minigame/circle_unpressed.png" id="1_266x6"]
+[ext_resource type="Texture2D" uid="uid://whh2s6kpu74v" path="res://assets/sprites/GUI ellemts/singing_minigame/circle_pressed.png" id="2_cgynn"]
+[ext_resource type="Script" path="res://scenes/sing_button.gd" id="3_c5u5y"]
+
+[node name="sing_button" type="TextureButton"]
+texture_normal = ExtResource("1_266x6")
+texture_pressed = ExtResource("2_cgynn")
+script = ExtResource("3_c5u5y")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 16.0
+offset_right = 507.0
+offset_bottom = 562.0
+theme_override_font_sizes/font_size = 400
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
