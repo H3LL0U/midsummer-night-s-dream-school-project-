@@ -408,7 +408,7 @@ var scene_instructions = [
 [
 	add_characters(['puck'],[1500]),
 	cutscene(['puck'],[800]),
-	change_text('Puck',"it's time to commit some mischief!")
+	change_text('Puck',"It's time to commit some mischief!")
 ],
 [
 	switch_to_minigame()
@@ -421,7 +421,7 @@ var scene_instructions = [
 	cutscene(['puck'],[-500])
 ],
 [
-	change_text('Bottom donkey', "looks like it should be my turn soon."),
+	change_text('Bottom donkey', "Looks like it should be my turn soon."),
 	cutscene(['bottom donkey'],[1500])
 ],
 [
