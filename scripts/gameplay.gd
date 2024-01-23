@@ -39,7 +39,8 @@ const menu = {
 }
 
 const  mini_games = {
-	"cast_a_spell": preload("res://scenes/minigame_spell_cast.tscn")
+	"cast_a_spell": preload("res://scenes/minigame_spell_cast.tscn"),
+	"singing_minigame": preload("res://scenes/singing_minigame.tscn")
 }
 
 	
@@ -206,13 +207,19 @@ func play_sound(sound_name:String, sound_delay_seconds = 0.0):
 			
 	return wrapper
 	
-	
-func switch_to_minigame():
+@export var minigame_active = false
+func switch_to_minigame(minigame = ""):
 	var wrapper = func ():
 		voicelines_index-=1
-		add_child(mini_games["cast_a_spell"].instantiate())
+		if minigame == "" or minigame == "cast_a_spell":
+			add_child(mini_games["cast_a_spell"].instantiate())
+			get_tree().paused = true
+		elif minigame == "singing_minigame":
+			add_child(mini_games["singing_minigame"].instantiate())
+			minigame_active = true
+			
 		
-		get_tree().paused = true
+		#get_tree().paused = true
 		$speechspeaker/soundspeaker.stop()
 		
 		
@@ -487,6 +494,9 @@ var scene_instructions = [
 	change_text('Bottom', "*Sings*"),
 ],
 [
+	switch_to_minigame("singing_minigame")
+],
+[
 	add_characters(["titania"],[-400]),
 	cutscene(['titania'],[200]),
 	cutscene(["bottom donkey"],[900]),
@@ -668,10 +678,10 @@ func _unhandled_input (event: InputEvent):
 		
 		if event.pressed:
 			
-			if event is InputEventMouseButton and (event.button_mask == MOUSE_BUTTON_LEFT) and text_to_add == "" and settings_opened==false and cutscene_active==false:
+			if event is InputEventMouseButton and (event.button_mask == MOUSE_BUTTON_LEFT) and text_to_add == "" and settings_opened==false and cutscene_active==false and !minigame_active :
 				
 				process_scene_instructions()
-			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add == "" and settings_opened==false and cutscene_active==false:
+			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add == "" and settings_opened==false and cutscene_active==false and !minigame_active:
 				process_scene_instructions()
 				'''
 				click_counter+=1
@@ -713,10 +723,10 @@ func _unhandled_input (event: InputEvent):
 					
 			
 			#finish the text when it's still showing and you click
-			elif event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false:
+			elif event is InputEventMouseButton and event.button_mask == MOUSE_BUTTON_LEFT and text_to_add != "" and settings_opened==false and !minigame_active:
 				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""
-			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add != "" and settings_opened==false:
+			elif event is InputEventKey and event.keycode == KEY_SPACE and text_to_add != "" and settings_opened==false and !minigame_active:
 				$text_box/Label_text.text +=text_to_add
 				text_to_add = ""
 	if event is InputEventKey and event.pressed:

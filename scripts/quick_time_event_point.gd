@@ -55,7 +55,10 @@ func _unhandled_input(event:InputEvent):
 				
 				var next_number_index = int(str(name).substr(name.rfind("t")+1))+1
 				my_turn = false
-				
+				if quick_event_button!="Space" and quick_event_button!="Enter":
+					$"../spell_casted".text+=quick_event_button
+				else:
+					$"../spell_casted".text+=" "
 				if $"..".has_node("quick_time_event"+str(next_number_index)):
 					$"..".get_node("quick_time_event"+str(next_number_index)).my_turn = true
 					$"..".current_button = next_number_index
@@ -77,7 +80,7 @@ func _unhandled_input(event:InputEvent):
 				$"..".get_node("quick_time_event1").my_turn = true
 				$"../Connection_line".add_point(Vector2(position.x,position.y))
 				visible = false
-			
+				$"../spell_casted".text = ""
 		
 
 

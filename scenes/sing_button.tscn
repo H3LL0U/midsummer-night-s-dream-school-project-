@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx3ncnv2oxm4h"]
+[gd_scene load_steps=6 format=3 uid="uid://dx3ncnv2oxm4h"]
 
 [ext_resource type="Texture2D" uid="uid://gr0jgyawsh8a" path="res://assets/sprites/GUI ellemts/singing_minigame/circle_unpressed.png" id="1_266x6"]
 [ext_resource type="Texture2D" uid="uid://whh2s6kpu74v" path="res://assets/sprites/GUI ellemts/singing_minigame/circle_pressed.png" id="2_cgynn"]
 [ext_resource type="Script" path="res://scenes/sing_button.gd" id="3_c5u5y"]
+[ext_resource type="Script" path="res://scenes/random_note_generator.gd" id="4_jtrvm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3p2p"]
 
 [node name="sing_button" type="TextureButton"]
+process_mode = 3
 texture_normal = ExtResource("1_266x6")
 texture_pressed = ExtResource("2_cgynn")
 script = ExtResource("3_c5u5y")
@@ -20,4 +24,21 @@ text = "W"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Note_spawner" type="Node2D" parent="."]
+position = Vector2(5000, 324)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16777215
+collision_mask = 16777215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(321, 321)
+scale = Vector2(25, 25)
+shape = SubResource("CircleShape2D_i3p2p")
+
+[node name="random_note_generator" type="Node" parent="."]
+script = ExtResource("4_jtrvm")
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

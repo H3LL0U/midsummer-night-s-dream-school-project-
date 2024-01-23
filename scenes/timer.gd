@@ -33,3 +33,4 @@ func _process(delta):
 		time = default_time
 		$"../../speechspeaker/soundspeaker".stream = wrong_sfx
 		$"../../speechspeaker/soundspeaker".play()
+		$"../spell_casted".text = " "

@@ -863,13 +863,14 @@ default_color = Color(1, 1, 0, 1)
 
 [node name="full" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-z_index = 99
+z_index = 100
+z_as_relative = false
 position = Vector2(588, 319)
 scale = Vector2(1.55, 1.55)
 texture = ExtResource("5_j2dw6")
 
 [node name="timeline" parent="." instance=ExtResource("6_ahu22")]
-position = Vector2(188, 617)
+position = Vector2(225, 617)
 script = ExtResource("7_81fdr")
 default_time = 90.0
 timer_active = true
@@ -888,6 +889,18 @@ offset_right = 562.0
 offset_bottom = 118.0
 theme_override_font_sizes/font_size = 50
 text = "Cast a spell!"
+
+[node name="spell_casted" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 133.0
+offset_top = 502.0
+offset_right = 431.0
+offset_bottom = 551.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
 
 [connection signal="frame_changed" from="quick_time_event1" to="quick_time_event1" method="_on_frame_changed"]
 [connection signal="frame_changed" from="quick_time_event2" to="quick_time_event2" method="_on_frame_changed"]
