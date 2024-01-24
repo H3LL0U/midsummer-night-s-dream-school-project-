@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://diorxr2rof4u7"
+path="res://.godot/imported/Li.mp3-7d1f8b5c11d142d5891c4157ff27cd77.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/sound effects/Li.mp3"
+dest_files=["res://.godot/imported/Li.mp3-7d1f8b5c11d142d5891c4157ff27cd77.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

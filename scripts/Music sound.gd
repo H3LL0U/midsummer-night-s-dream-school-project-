@@ -13,7 +13,7 @@ func _ready():
 
 
 
-func _process(delta):
+func _process(_delta):
 	
 	if sound_node:
 		sound_node.volume_db = self.value-80

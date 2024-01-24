@@ -36,14 +36,16 @@ func _on_pressed():
 			
 			remove_child(i)
 			pressed_deletion = false
-			$"../../Completion".hit()
+			$"../../Completion".hit(shortcut_button)
 			
 	if entred_notes == []:
 		$"../../Completion".miss()
 	entred_notes = []
 
-func _on_area_2d_area_exited(area):
+func _on_area_2d_area_exited(_area):
+	
 	
 	if !pressed_deletion:
+		entred_notes.remove_at(0)
 		$"../../Completion".miss()
 

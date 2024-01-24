@@ -4,6 +4,6 @@ extends Node2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	$timeline_complete.scale.x = timeline_max_scale* $/root/gameplay.completion
 	$Label.text = str(int($/root/gameplay.completion*100))+"%"

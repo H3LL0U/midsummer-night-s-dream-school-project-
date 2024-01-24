@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	volume_db = inherit_from.volume_db+sound_volume_offset
 #../../speechspeaker
   
